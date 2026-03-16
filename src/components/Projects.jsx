@@ -1,9 +1,9 @@
 import { CollapsibleSection } from "./CollapsibleSection"
 
-export const Projects = () => {
+export const Projects = ({ dragHandleProps }) => {
   return (
     <div className="projects">
-      <CollapsibleSection title="Projects">
+      <CollapsibleSection title="Projects" dragHandleProps={dragHandleProps}>
         <div className="projects__fields"></div>
         <button className="projects__add-btn" type="button">+ Add project</button>
       </CollapsibleSection>

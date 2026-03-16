@@ -1,9 +1,9 @@
 import { CollapsibleSection } from "./CollapsibleSection"
 
-export const PersonalDetails = () => {
+export const PersonalDetails = ({ dragHandleProps }) => {
   return (
     <div className="personal-details">
-      <CollapsibleSection title="Personal Details">
+      <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
         <div className="personal-details__fields">
           <div className="personal-details__field">
             <label className="personal-details__label" htmlFor="job-target">Job Target</label>
