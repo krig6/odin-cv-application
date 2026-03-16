@@ -1,6 +1,7 @@
 import { PersonalDetails } from "./components/PersonalDetails"
 import { Summary } from "./components/Summary"
 import { Skills } from "./components/Skills"
+import { Projects } from "./components/Projects"
 
 export const App = () => {
   return (
@@ -10,6 +11,7 @@ export const App = () => {
           <PersonalDetails />
           <Summary />
           <Skills />
+          <Projects />
         </div>
         <div className="cv-builder__preview">
         </div>
