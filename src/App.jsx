@@ -6,6 +6,8 @@ import { WorkExperience } from "./components/WorkExperience";
 import { EducationDetails } from "./components/EducationDetails";
 import { SortableContainer } from "./components/SortableSections";
 
+import { SummaryPreview } from "./components/SummaryPreview"
+
 export const App = () => {
   const components = [
     { id: "personal", component: <PersonalDetails /> },
@@ -21,7 +23,9 @@ export const App = () => {
       <div className="cv-builder__inputs">
         <SortableContainer components={components} />
       </div>
-      <div className="cv-builder__preview"></div>
+      <div className="cv-builder__preview">
+        <SummaryPreview />
+      </div>
     </div>
   );
 };
