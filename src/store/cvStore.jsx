@@ -57,3 +57,47 @@ export const useProject = create((set) => ({
     })
   }))
 }))
+
+export const useWork = create((set) => ({
+  works: [],
+  addWork: () => set(state => ({
+    works: [...state.works, { id: crypto.randomUUID(), name: "", position: "", period: "", descriptions: [] }]
+  })),
+  setWork: (workId, updates) => set(state => ({
+    works: state.works.map((work) => {
+      if (work.id !== workId) return work
+
+      return { ...work, ...updates }
+    })
+  })),
+  deleteWork: (workId) => set(state => ({
+    works: state.works.filter(work => work.id !== workId)
+  })),
+  addDescription: (workId) => set(state => ({
+    works: state.works.map(work => work.id === workId
+      ? { ...work, descriptions: [...work.descriptions, { id: crypto.randomUUID(), text: "" }] } : work
+    )
+  })),
+  setDescription: (workId, descId, newValue) => set(state => ({
+    works: state.works.map((work) => {
+      if (work.id !== workId) return work
+
+      return {
+        ...work, descriptions: work.descriptions.map((description) => {
+          if (description.id !== descId) return description
+
+          return { ...description, ...newValue }
+        })
+      }
+    })
+  })),
+  deleteDescription: (workId, descId) => set(state => ({
+    works: state.works.map((work) => {
+      if (work.id !== workId) return work
+
+      return {
+        ...work, descriptions: work.descriptions.filter(description => description.id !== descId)
+      }
+    })
+  }))
+}))
