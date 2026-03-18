@@ -8,6 +8,7 @@ import { SortableContainer } from "./components/SortableSections";
 
 import { SummaryPreview } from "./components/SummaryPreview"
 import { SkillsPreview } from "./components/SkillsPreview"
+import { ProjectPreview } from "./components/ProjectPreview"
 
 export const App = () => {
   const components = [
@@ -27,6 +28,7 @@ export const App = () => {
       <div className="cv-builder__preview">
         <SummaryPreview />
         <SkillsPreview />
+        <ProjectPreview />
       </div>
     </div>
   );
