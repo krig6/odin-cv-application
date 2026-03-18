@@ -101,3 +101,47 @@ export const useWork = create((set) => ({
     })
   }))
 }))
+
+export const useEducation = create((set) => ({
+  educations: [],
+  addEducation: () => set(state => ({
+    educations: [...state.educations, { id: crypto.randomUUID(), name: "", degree: "", period: "", descriptions: [] }]
+  })),
+  setEducation: (educId, newValues) => set(state => ({
+    educations: state.educations.map((education) => {
+      if (education.id !== educId) return education
+
+      return { ...education, ...newValues }
+    })
+  })),
+  deleteEducation: (educId) => set(state => ({
+    educations: state.educations.filter(education => education.id !== educId)
+  })),
+  addDescription: (educId) => set(state => ({
+    educations: state.educations.map((education) => {
+      if (education.id !== educId) return education
+
+      return { ...education, descriptions: [...education.descriptions, { id: crypto.randomUUID(), text: "" }] }
+    })
+  })),
+  setDescription: (educId, descId, newValue) => set(state => ({
+    educations: state.educations.map((education) => {
+      if (education.id !== educId) return education
+
+      return {
+        ...education, descriptions: education.descriptions.map((description) => {
+          if (description.id !== descId) return description
+
+          return { ...description, ...newValue }
+        })
+      }
+    })
+  })),
+  deleteDescription: (educId, descId) => set(state => ({
+    educations: state.educations.map((education) => {
+      if (education.id !== educId) return education
+
+      return { ...education, descriptions: education.descriptions.filter(description => description.id !== descId) }
+    })
+  }))
+}))

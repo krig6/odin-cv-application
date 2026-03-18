@@ -10,6 +10,7 @@ import { SummaryPreview } from "./components/SummaryPreview"
 import { SkillsPreview } from "./components/SkillsPreview"
 import { ProjectPreview } from "./components/ProjectPreview"
 import { WorkExperiencePreview } from "./components/WorkExperiencePreview"
+import { EducationDetailsPreview } from "./components/EducationDetailsPreview.jsx"
 
 export const App = () => {
   const components = [
@@ -31,6 +32,7 @@ export const App = () => {
         <SkillsPreview />
         <ProjectPreview />
         <WorkExperiencePreview />
+        <EducationDetailsPreview />
       </div>
     </div>
   );
