@@ -11,6 +11,7 @@ import { SkillsPreview } from "./components/SkillsPreview"
 import { ProjectPreview } from "./components/ProjectPreview"
 import { WorkExperiencePreview } from "./components/WorkExperiencePreview"
 import { EducationDetailsPreview } from "./components/EducationDetailsPreview.jsx"
+import { PersonalDetailsPreview } from "./components/PersonalDetailsPreview.jsx"
 
 export const App = () => {
   const components = [
@@ -28,8 +29,9 @@ export const App = () => {
         <SortableContainer components={components} />
       </div>
       <div className="cv-builder__preview">
-        <SummaryPreview />
+        <PersonalDetailsPreview />
         <SkillsPreview />
+        <SummaryPreview />
         <ProjectPreview />
         <WorkExperiencePreview />
         <EducationDetailsPreview />

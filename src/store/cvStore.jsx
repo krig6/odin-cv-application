@@ -145,3 +145,10 @@ export const useEducation = create((set) => ({
     })
   }))
 }))
+
+export const usePersonal = create((set) => ({
+  person: { jobTarget: "", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
+  setPerson: (update) => set(state => ({
+    person: { ...state.person, ...update }
+  }))
+}))
