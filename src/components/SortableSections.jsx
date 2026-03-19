@@ -3,6 +3,7 @@ import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { TrashAlt, Move } from "@boxicons/react";
 
 export const SortableItem = ({ id, children }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -19,7 +20,7 @@ export const SortableItem = ({ id, children }) => {
   );
 };
 
-export const SortableContainer = ({ components }) => {
+export const SortableSections = ({ components }) => {
   const [items, setItems] = useState(components);
 
   const handleDragEnd = (event) => {
@@ -41,5 +42,55 @@ export const SortableContainer = ({ components }) => {
         ))}
       </SortableContext>
     </DndContext>
+  );
+};
+
+export const SortableItems = ({ items, onReorder, update, del, label, children }) => {
+  const handleDragEnd = ({ active, over }) => {
+    if (!over || active.id === over.id) return;
+
+    const oldIndex = items.findIndex(i => i.id === active.id);
+    const newIndex = items.findIndex(i => i.id === over.id);
+
+    onReorder(arrayMove(items, oldIndex, newIndex));
+  };
+
+  return (
+    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
+        {items.map(item => (
+          <SortableItem key={item.id} id={item.id}>
+            <ItemField
+              itemId={item.id}
+              itemName={item.name ?? item.text ?? ""}
+              update={(value) => update(item.id, value)}
+              del={() => del(item.id)}
+              label={label}
+            >
+              {children ? children(item) : null}
+            </ItemField>
+          </SortableItem>
+        ))}
+      </SortableContext>
+    </DndContext>
+  );
+};
+
+const ItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
+  return (
+    <div className="sortable-item-field">
+      <Move {...dragHandleProps} />
+
+      <div className="sortable-item">
+        <label htmlFor={`sortable-item-${itemId}`}>{label}</label>
+        <input
+          id={`sortable-item-${itemId}`}
+          value={itemName}
+          onChange={(e) => update(e.target.value)}
+        />
+        <TrashAlt onClick={del} />
+        {children}
+      </div>
+    </div>
   );
 };

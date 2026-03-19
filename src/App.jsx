@@ -4,7 +4,7 @@ import { Skills } from "./components/Skills";
 import { Projects } from "./components/Projects";
 import { WorkExperience } from "./components/WorkExperience";
 import { EducationDetails } from "./components/EducationDetails";
-import { SortableContainer } from "./components/SortableSections";
+import { SortableSections } from "./components/SortableSections";
 
 import { SummaryPreview } from "./components/SummaryPreview"
 import { SkillsPreview } from "./components/SkillsPreview"
@@ -26,7 +26,7 @@ export const App = () => {
   return (
     <div className="cv-builder">
       <div className="cv-builder__inputs">
-        <SortableContainer components={components} />
+        <SortableSections components={components} />
       </div>
       <div className="cv-builder__preview">
         <PersonalDetailsPreview />

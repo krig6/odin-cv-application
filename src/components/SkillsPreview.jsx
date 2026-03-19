@@ -6,7 +6,7 @@ export const SkillsPreview = () => {
     ? (<section className="preview-section" >
       <h2 className="preview-section__title">Skills</h2>
       {skills
-        .filter(skill => skill.name.trim() !== "")
+        .filter(skill => (skill.name ?? "").toString().trim() !== "")
         .map(skill => (
           <span key={skill.id}>{skill.name}</span>
         ))}

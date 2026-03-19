@@ -1,6 +1,6 @@
 import { CollapsibleSection } from "./CollapsibleSection"
-import { TrashAlt } from "@boxicons/react"
 import { useEducation } from "../store/cvStore"
+import { SortableItems } from "./SortableSections";
 
 export const EducationDetails = ({ dragHandleProps }) => {
   const educations = useEducation(state => state.educations)
@@ -10,27 +10,21 @@ export const EducationDetails = ({ dragHandleProps }) => {
   const addDescription = useEducation(state => state.addDescription)
   const setDescription = useEducation(state => state.setDescription)
   const deleteDescription = useEducation(state => state.deleteDescription)
+  const reorderDescriptions = useEducation(state => state.reorderDescriptions);
+  const reorderEducations = useEducation(state => state.reorderEducations);
 
   return (
     <div className="education">
       <CollapsibleSection title="Education" dragHandleProps={dragHandleProps}>
-        <div className="educations__list">
-          {educations.map(education => (
-            <div className="educations__item" key={education.id}>
-              <div className="educations__header">
-                <label className="educations__label" htmlFor={education.id}>University</label>
-                <input
-                  id={education.id}
-                  className="educations__input"
-                  value={education.name}
-                  onChange={(e) => setEducation(education.id, { name: e.target.value })}
-                />
-                <button
-                  className="educations__button educations__button--delete" type="button" onClick={() => deleteEducation(education.id)}
-                >
-                  <TrashAlt />
-                </button>
-              </div>
+        <SortableItems
+          items={educations}
+          onReorder={reorderEducations}
+          update={(id, val) => setEducation(id, { name: val })}
+          del={deleteEducation}
+          label="Education"
+        >
+          {(education) => (
+            <>
               <div className="educations__period">
                 <label className="educations__label" htmlFor={`period-${education.id}`}>Period</label>
                 <input
@@ -49,27 +43,20 @@ export const EducationDetails = ({ dragHandleProps }) => {
                   onChange={(e) => setEducation(education.id, { degree: e.target.value })}
                 />
               </div>
-              <div className="educations__descriptions">
-                {education.descriptions.map(description => (
-                  <div className="educations__description" key={description.id}>
-                    <input
-                      id={`desc-${description.id}`}
-                      className="educations__input"
-                      value={description.text}
-                      onChange={(e) => setDescription(education.id, description.id, { text: e.target.value })}
-                    />
-                    <button
-                      className="educations__button educations__button--delete" type="button" onClick={() => deleteDescription(education.id, description.id)}
-                    >
-                      <TrashAlt />
-                    </button>
-                  </div>
-                ))}
-              </div>
+
+              <SortableItems
+                items={education.descriptions}
+                onReorder={(newDesc) => reorderDescriptions(education.id, newDesc)}
+                update={(descId, value) => setDescription(education.id, descId, { text: value })}
+                del={(descId) => deleteDescription(education.id, descId)}
+                label="Description"
+              />
+
               <button className="educations__button educations__button--add-description" type="button" onClick={() => addDescription(education.id)}>+ Add Description</button>
-            </div>
-          ))}
-        </div>
+
+            </>
+          )}
+        </SortableItems>
         <button className="educations__button educations__button--add-education" type="button" onClick={addEducation}>+ Add Education</button>
       </CollapsibleSection >
     </div >

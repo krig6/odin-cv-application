@@ -1,6 +1,6 @@
 import { CollapsibleSection } from "./CollapsibleSection"
-import { TrashAlt } from "@boxicons/react"
 import { useWork } from "../store/cvStore"
+import { SortableItems } from "./SortableSections";
 
 export const WorkExperience = ({ dragHandleProps }) => {
   const works = useWork(state => state.works)
@@ -10,27 +10,21 @@ export const WorkExperience = ({ dragHandleProps }) => {
   const addDescription = useWork(state => state.addDescription)
   const setDescription = useWork(state => state.setDescription)
   const deleteDescription = useWork(state => state.deleteDescription)
+  const reorderDescriptions = useWork(state => state.reorderDescriptions);
+  const reorderWorks = useWork(state => state.reorderWorks);
 
   return (
     <div className="works">
       <CollapsibleSection title="Professional Experience" dragHandleProps={dragHandleProps}>
-        <div className="works__list">
-          {works.map(work => (
-            <div className="works__item" key={work.id}>
-              <div className="works__header">
-                <label className="works__label" htmlFor={work.id}>Company</label>
-                <input
-                  id={work.id}
-                  className="works__input"
-                  value={work.name}
-                  onChange={(e) => setWork(work.id, { name: e.target.value })}
-                />
-                <button
-                  className="works__button works__button--delete" type="button" onClick={() => deleteWork(work.id)}
-                >
-                  <TrashAlt />
-                </button>
-              </div>
+        <SortableItems
+          items={works}
+          onReorder={reorderWorks}
+          update={(id, val) => setWork(id, { name: val })}
+          del={deleteWork}
+          label="Company"
+        >
+          {(work) => (
+            <>
               <div className="works__period">
                 <label className="works__label" htmlFor={`period-${work.id}`}>Period</label>
                 <input
@@ -40,6 +34,7 @@ export const WorkExperience = ({ dragHandleProps }) => {
                   onChange={(e) => setWork(work.id, { period: e.target.value })}
                 />
               </div>
+
               <div className="works__position">
                 <label className="works__label" htmlFor={`position-${work.id}`}>Position</label>
                 <input
@@ -49,27 +44,18 @@ export const WorkExperience = ({ dragHandleProps }) => {
                   onChange={(e) => setWork(work.id, { position: e.target.value })}
                 />
               </div>
-              <div className="works__descriptions">
-                {work.descriptions.map(description => (
-                  <div className="works__description" key={description.id}>
-                    <input
-                      id={`desc-${description.id}`}
-                      className="works__input"
-                      value={description.text}
-                      onChange={(e) => setDescription(work.id, description.id, { text: e.target.value })}
-                    />
-                    <button
-                      className="works__button works__button--delete" type="button" onClick={() => deleteDescription(work.id, description.id)}
-                    >
-                      <TrashAlt />
-                    </button>
-                  </div>
-                ))}
-              </div>
+
+              <SortableItems
+                items={work.descriptions}
+                onReorder={(newDesc) => reorderDescriptions(work.id, newDesc)}
+                update={(descId, value) => setDescription(work.id, descId, { text: value })}
+                del={(descId) => deleteDescription(work.id, descId)}
+                label="Description"
+              />
               <button className="works__button works__button--add-description" type="button" onClick={() => addDescription(work.id)}>+ Add Description</button>
-            </div>
-          ))}
-        </div>
+            </>
+          )}
+        </SortableItems >
         <button className="works__button works__button--add-work" type="button" onClick={addWork}>+ Add Employment</button>
       </CollapsibleSection >
     </div >

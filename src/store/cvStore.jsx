@@ -15,7 +15,8 @@ export const useSkill = create((set) => ({
   })),
   deleteSkill: (id) => set(state => ({
     skills: state.skills.filter(skill => skill.id !== id)
-  }))
+  })),
+  setSkills: (newArray) => set({ skills: newArray })
 }))
 
 export const useProject = create((set) => ({
@@ -55,7 +56,17 @@ export const useProject = create((set) => ({
         ...project, descriptions: project.descriptions.filter(description => description.id !== descId)
       }
     })
-  }))
+  })),
+  reorderProjects: (newProjectsArray) => set({ projects: newProjectsArray }),
+
+  reorderDescriptions: (projId, newDescriptionsArray) =>
+    set((state) => ({
+      projects: state.projects.map((project) =>
+        project.id !== projId
+          ? project
+          : { ...project, descriptions: newDescriptionsArray }
+      ),
+    })),
 }))
 
 export const useWork = create((set) => ({
@@ -99,7 +110,17 @@ export const useWork = create((set) => ({
         ...work, descriptions: work.descriptions.filter(description => description.id !== descId)
       }
     })
-  }))
+  })),
+  reorderWorks: (newWorksArray) => set({ works: newWorksArray }),
+
+  reorderDescriptions: (workId, newDescriptionsArray) =>
+    set((state) => ({
+      works: state.works.map((work) =>
+        work.id !== workId
+          ? work
+          : { ...work, descriptions: newDescriptionsArray }
+      ),
+    })),
 }))
 
 export const useEducation = create((set) => ({
@@ -114,6 +135,16 @@ export const useEducation = create((set) => ({
       return { ...education, ...newValues }
     })
   })),
+  reorderEducations: (newEducationsArray) => set({ educations: newEducationsArray }),
+
+  reorderDescriptions: (educId, newDescriptionsArray) =>
+    set((state) => ({
+      educations: state.educations.map((education) =>
+        education.id !== educId
+          ? education
+          : { ...education, descriptions: newDescriptionsArray }
+      ),
+    })),
   deleteEducation: (educId) => set(state => ({
     educations: state.educations.filter(education => education.id !== educId)
   })),

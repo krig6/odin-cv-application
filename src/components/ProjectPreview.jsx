@@ -6,7 +6,7 @@ export const ProjectPreview = () => {
     ? (<section className="preview-section" >
       <h2 className="preview-section__title">Projects</h2>
       {projects
-        .filter(project => project.name.trim() !== "")
+        .filter(project => (project.name ?? "").toString().trim() !== "")
         .map(project => (
           <div className="preview-section__content" key={project.id}>
             <div className="preview-section__header">
