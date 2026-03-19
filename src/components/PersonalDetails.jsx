@@ -1,8 +1,8 @@
 import { CollapsibleSection } from "./CollapsibleSection"
-import { usePersonal } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 
 export const PersonalDetails = ({ dragHandleProps }) => {
-  const setPerson = usePersonal(state => state.setPerson)
+  const setPerson = useCvStore(state => state.setPerson)
   return (
     <div className="personal-details">
       <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>

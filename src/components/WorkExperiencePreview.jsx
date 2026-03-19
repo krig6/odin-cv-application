@@ -1,22 +1,22 @@
-import { useWork } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 
 export const WorkExperiencePreview = () => {
-  const works = useWork(state => state.works)
-  return works.length > 0
+  const employments = useCvStore(state => state.employments)
+  return employments.length > 0
     ? (<section className="preview-section" >
       <h2 className="preview-section__title">Professional Experience</h2>
-      {works
-        .filter(work => (work.name ?? "").toString().trim() !== "")
-        .map(work => (
-          <div className="preview-section__content" key={work.id}>
-            <strong className="preview-section__name">{work.name}</strong>
+      {employments
+        .filter(employment => (employment.name ?? "").toString().trim() !== "")
+        .map(employment => (
+          <div className="preview-section__content" key={employment.id}>
+            <strong className="preview-section__name">{employment.name}</strong>
             <div className="preview-section__sub-header">
-              {work.period && <span className="preview-section__duration">{work.period}</span>}
-              {work.position && <span>{work.position}</span>}
+              {employment.period && <span className="preview-section__duration">{employment.period}</span>}
+              {employment.position && <span>{employment.position}</span>}
             </div>
-            {work.descriptions.length > 0
+            {employment.descriptions.length > 0
               ? (<ul>
-                {work.descriptions.map(description => (
+                {employment.descriptions.map(description => (
                   <li key={description.id}>{description.text}</li>
                 ))}
               </ul>

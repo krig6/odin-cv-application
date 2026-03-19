@@ -1,62 +1,62 @@
 import { CollapsibleSection } from "./CollapsibleSection"
-import { useWork } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 import { SortableItems } from "./SortableSections";
 
 export const WorkExperience = ({ dragHandleProps }) => {
-  const works = useWork(state => state.works)
-  const addWork = useWork(state => state.addWork)
-  const setWork = useWork(state => state.setWork)
-  const deleteWork = useWork(state => state.deleteWork)
-  const addDescription = useWork(state => state.addDescription)
-  const setDescription = useWork(state => state.setDescription)
-  const deleteDescription = useWork(state => state.deleteDescription)
-  const reorderDescriptions = useWork(state => state.reorderDescriptions);
-  const reorderWorks = useWork(state => state.reorderWorks);
+  const employments = useCvStore(state => state.employments)
+  const addItem = useCvStore(state => state.addItem)
+  const setItem = useCvStore(state => state.setItem)
+  const deleteItem = useCvStore(state => state.deleteItem)
+  const addDescription = useCvStore(state => state.addDescription)
+  const setDescription = useCvStore(state => state.setDescription)
+  const deleteDescription = useCvStore(state => state.deleteDescription)
+  const reorderItems = useCvStore(state => state.reorderItems);
+  const reorderDescriptions = useCvStore(state => state.reorderDescriptions);
 
   return (
-    <div className="works">
+    <div className="employments">
       <CollapsibleSection title="Professional Experience" dragHandleProps={dragHandleProps}>
         <SortableItems
-          items={works}
-          onReorder={reorderWorks}
-          update={(id, val) => setWork(id, { name: val })}
-          del={deleteWork}
+          items={employments}
+          onReorder={(newArray) => reorderItems("employments", newArray)}
+          update={(itemId, val) => setItem("employments", itemId, { name: val })}
+          del={(itemId) => deleteItem("employments", itemId)}
           label="Company"
         >
-          {(work) => (
+          {(employment) => (
             <>
-              <div className="works__period">
-                <label className="works__label" htmlFor={`period-${work.id}`}>Period</label>
+              <div className="employments__period">
+                <label className="employments__label" htmlFor={`period-${employment.id}`}>Period</label>
                 <input
-                  id={`period-${work.id}`}
-                  className="works__input"
-                  value={work.period}
-                  onChange={(e) => setWork(work.id, { period: e.target.value })}
+                  id={`period-${employment.id}`}
+                  className="employments__input"
+                  value={employment.period}
+                  onChange={(e) => setItem("employments", employment.id, { period: e.target.value })}
                 />
               </div>
 
-              <div className="works__position">
-                <label className="works__label" htmlFor={`position-${work.id}`}>Position</label>
+              <div className="employments__position">
+                <label className="employments__label" htmlFor={`position-${employment.id}`}>Position</label>
                 <input
-                  id={`position-${work.id}`}
-                  className="works__input"
-                  value={work.position}
-                  onChange={(e) => setWork(work.id, { position: e.target.value })}
+                  id={`position-${employment.id}`}
+                  className="employments__input"
+                  value={employment.position}
+                  onChange={(e) => setItem("employments", employment.id, { position: e.target.value })}
                 />
               </div>
 
               <SortableItems
-                items={work.descriptions}
-                onReorder={(newDesc) => reorderDescriptions(work.id, newDesc)}
-                update={(descId, value) => setDescription(work.id, descId, { text: value })}
-                del={(descId) => deleteDescription(work.id, descId)}
+                items={employment.descriptions}
+                onReorder={(newDesc) => reorderDescriptions("employments", employment.id, newDesc)}
+                update={(descId, value) => setDescription("employments", employment.id, descId, value)}
+                del={(descId) => deleteDescription("employments", employment.id, descId)}
                 label="Description"
               />
-              <button className="works__button works__button--add-description" type="button" onClick={() => addDescription(work.id)}>+ Add Description</button>
+              <button className="employments__button employments__button--add-description" type="button" onClick={() => addDescription("employments", employment.id)}>+ Add Description</button>
             </>
           )}
         </SortableItems >
-        <button className="works__button works__button--add-work" type="button" onClick={addWork}>+ Add Employment</button>
+        <button className="employments__button employments__button--add-employment" type="button" onClick={() => addItem("employments")}>+ Add Employment</button>
       </CollapsibleSection >
     </div >
   )

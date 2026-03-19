@@ -1,8 +1,8 @@
 import { CollapsibleSection } from "./CollapsibleSection"
-import { useSummary } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 
 export const Summary = ({ dragHandleProps }) => {
-  const setSummary = useSummary(state => state.setSummary)
+  const setSummary = useCvStore(state => state.setSummary)
   return (
     <div className="summary">
       <CollapsibleSection title="Summary" dragHandleProps={dragHandleProps}>

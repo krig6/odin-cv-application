@@ -1,7 +1,7 @@
-import { useSkill } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 
 export const SkillsPreview = () => {
-  const skills = useSkill(state => state.skills)
+  const skills = useCvStore(state => state.skills)
   return skills.length > 0
     ? (<section className="preview-section" >
       <h2 className="preview-section__title">Skills</h2>

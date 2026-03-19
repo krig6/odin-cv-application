@@ -1,7 +1,8 @@
-import { useProject } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 
 export const ProjectPreview = () => {
-  const projects = useProject(state => state.projects)
+  const projects = useCvStore(state => state.projects)
+
   return projects.length > 0
     ? (<section className="preview-section" >
       <h2 className="preview-section__title">Projects</h2>

@@ -1,0 +1,91 @@
+import { create } from "zustand";
+
+const addComponents = {
+  skills: { name: "" },
+  projects: { name: "", techStack: "", descriptions: [], live: "", repo: "" },
+  employments: { name: "", position: "", period: "", descriptions: [] },
+  educations: { name: "", degree: "", period: "", descriptions: [] }
+}
+
+export const useCvStore = create((set) => ({
+  // ========== PERSONAL INFO ==========
+  person: { jobTarget: "", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
+  summary: "",
+
+  // ========== SECTIONS ==========
+  skills: [],
+  projects: [],
+  employments: [],
+  educations: [],
+
+  // ========== ITEM CRUD ==========
+  // Add a new item to a section (skills, projects, employments, educations)
+  addItem: (sectionKey) => set(state => ({
+    [sectionKey]: [...state[sectionKey], { ...addComponents[sectionKey], id: crypto.randomUUID() }]
+  })),
+
+  // Update person object
+  setPerson: (update) => set(state => ({
+    person: { ...state.person, ...update }
+  })),
+
+  // Update summary
+  setSummary: (newValue) => set({ summary: newValue }),
+
+  // Update an existing item in a section
+  setItem: (sectionKey, itemId, itemUpdates) => set(state => ({
+    [sectionKey]: state[sectionKey].map(item => item.id === itemId ? { ...item, ...itemUpdates } : item)
+  })),
+
+  // Delete an item from a section
+  deleteItem: (sectionKey, itemId) => set(state => ({
+    [sectionKey]: state[sectionKey].filter(item => item.id !== itemId)
+  })),
+
+  // ========== DESCRIPTION CRUD ==========
+  // Add a description to a specific item
+  addDescription: (sectionKey, itemId) => set(state => ({
+    [sectionKey]: state[sectionKey].map((item) => {
+      if (item.id !== itemId) return item
+
+      return { ...item, descriptions: [...item.descriptions, { id: crypto.randomUUID(), text: "" }] }
+    })
+  })),
+
+  // Update a description text
+  setDescription: (sectionKey, itemId, descId, newValue) => set(state => ({
+    [sectionKey]: state[sectionKey].map((item) => {
+      if (item.id !== itemId) return item
+
+      return {
+        ...item, descriptions: item.descriptions.map((description) => {
+          if (description.id !== descId) return description
+
+          return { ...description, text: newValue }
+        })
+      }
+    })
+  })),
+
+  // Delete a description
+  deleteDescription: (sectionKey, itemId, descId) => set(state => ({
+    [sectionKey]: state[sectionKey].map((item) => {
+      if (item.id !== itemId) return item
+
+      return { ...item, descriptions: item.descriptions.filter(description => description.id !== descId) }
+    })
+  })),
+
+  // ========== REORDER ==========
+  // Replace a section with a new reordered array of items
+  reorderItems: (sectionKey, newSectionArray) => set({ [sectionKey]: newSectionArray }),
+
+  // Replace an item's descriptions with a new reordered array
+  reorderDescriptions: (sectionKey, itemId, newDescriptionsArray) => set(state => ({
+    [sectionKey]: state[sectionKey].map((item) => {
+      if (item.id !== itemId) return item
+
+      return { ...item, descriptions: newDescriptionsArray }
+    })
+  }))
+}))

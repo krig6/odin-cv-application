@@ -1,17 +1,17 @@
 import { CollapsibleSection } from "./CollapsibleSection";
-import { useProject } from "../store/cvStore";
+import { useCvStore } from "../store/CvStore";
 import { SortableItems } from "./SortableSections";
 
 export const Projects = ({ dragHandleProps }) => {
-  const projects = useProject(state => state.projects);
-  const addProject = useProject(state => state.addProject);
-  const setProject = useProject(state => state.setProject);
-  const deleteProject = useProject(state => state.deleteProject);
-  const addDescription = useProject(state => state.addDescription);
-  const setDescription = useProject(state => state.setDescription);
-  const deleteDescription = useProject(state => state.deleteDescription);
-  const reorderDescriptions = useProject(state => state.reorderDescriptions);
-  const reorderProjects = useProject(state => state.reorderProjects);
+  const projects = useCvStore(state => state.projects)
+  const addItem = useCvStore(state => state.addItem)
+  const setItem = useCvStore(state => state.setItem)
+  const deleteItem = useCvStore(state => state.deleteItem)
+  const addDescription = useCvStore(state => state.addDescription)
+  const setDescription = useCvStore(state => state.setDescription)
+  const deleteDescription = useCvStore(state => state.deleteDescription)
+  const reorderItems = useCvStore(state => state.reorderItems);
+  const reorderDescriptions = useCvStore(state => state.reorderDescriptions);
 
   return (
     <div className="projects">
@@ -19,9 +19,9 @@ export const Projects = ({ dragHandleProps }) => {
 
         <SortableItems
           items={projects}
-          onReorder={reorderProjects}
-          update={(id, val) => setProject(id, { name: val })}
-          del={deleteProject}
+          onReorder={(newArray) => reorderItems("projects", newArray)}
+          update={(itemId, val) => setItem("projects", itemId, { name: val })}
+          del={(itemId) => deleteItem("projects", itemId)}
           label="Project"
         >
           {(project) => (
@@ -31,7 +31,7 @@ export const Projects = ({ dragHandleProps }) => {
                 <input
                   id={`tech-${project.id}`}
                   value={project.techStack}
-                  onChange={(e) => setProject(project.id, { techStack: e.target.value })}
+                  onChange={(e) => setItem("projects", project.id, { techStack: e.target.value })}
                 />
               </div>
 
@@ -41,7 +41,7 @@ export const Projects = ({ dragHandleProps }) => {
                   <input
                     id={`live-${project.id}`}
                     value={project.live}
-                    onChange={(e) => setProject(project.id, { live: e.target.value })}
+                    onChange={(e) => setItem("projects", project.id, { live: e.target.value })}
                   />
                 </div>
                 <div className="projects__link projects__link--repo">
@@ -49,23 +49,23 @@ export const Projects = ({ dragHandleProps }) => {
                   <input
                     id={`repo-${project.id}`}
                     value={project.repo}
-                    onChange={(e) => setProject(project.id, { repo: e.target.value })}
+                    onChange={(e) => setItem("projects", project.id, { repo: e.target.value })}
                   />
                 </div>
               </div>
 
               <SortableItems
                 items={project.descriptions}
-                onReorder={(newDesc) => reorderDescriptions(project.id, newDesc)}
-                update={(descId, value) => setDescription(project.id, descId, { text: value })}
-                del={(descId) => deleteDescription(project.id, descId)}
+                onReorder={(newDesc) => reorderDescriptions("projects", project.id, newDesc)}
+                update={(descId, value) => setDescription("projects", project.id, descId, value)}
+                del={(descId) => deleteDescription("projects", project.id, descId)}
                 label="Description"
               />
 
               <button
                 className="projects__button projects__button--add-description"
                 type="button"
-                onClick={() => addDescription(project.id)}
+                onClick={() => addDescription("projects", project.id)}
               >
                 + Add Description
               </button>
@@ -76,7 +76,7 @@ export const Projects = ({ dragHandleProps }) => {
         <button
           className="projects__button projects__button--add-project"
           type="button"
-          onClick={addProject}
+          onClick={() => addItem("projects")}
         >
           + Add project
         </button>

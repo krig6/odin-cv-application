@@ -1,7 +1,7 @@
-import { useSummary } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore"
 
 export const SummaryPreview = () => {
-  const currentSummary = useSummary(state => state.summary)
+  const currentSummary = useCvStore(state => state.summary)
 
   return currentSummary
     ? (<section className="preview-section" >

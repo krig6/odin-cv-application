@@ -1,27 +1,27 @@
 import { CollapsibleSection } from "./CollapsibleSection"
-import { useEducation } from "../store/cvStore"
+import { useCvStore } from "../store/CvStore";
 import { SortableItems } from "./SortableSections";
 
 export const EducationDetails = ({ dragHandleProps }) => {
-  const educations = useEducation(state => state.educations)
-  const addEducation = useEducation(state => state.addEducation)
-  const setEducation = useEducation(state => state.setEducation)
-  const deleteEducation = useEducation(state => state.deleteEducation)
-  const addDescription = useEducation(state => state.addDescription)
-  const setDescription = useEducation(state => state.setDescription)
-  const deleteDescription = useEducation(state => state.deleteDescription)
-  const reorderDescriptions = useEducation(state => state.reorderDescriptions);
-  const reorderEducations = useEducation(state => state.reorderEducations);
+  const educations = useCvStore(state => state.educations)
+  const addItem = useCvStore(state => state.addItem)
+  const setItem = useCvStore(state => state.setItem)
+  const deleteItem = useCvStore(state => state.deleteItem)
+  const addDescription = useCvStore(state => state.addDescription)
+  const setDescription = useCvStore(state => state.setDescription)
+  const deleteDescription = useCvStore(state => state.deleteDescription)
+  const reorderItems = useCvStore(state => state.reorderItems);
+  const reorderDescriptions = useCvStore(state => state.reorderDescriptions);
 
   return (
     <div className="education">
       <CollapsibleSection title="Education" dragHandleProps={dragHandleProps}>
         <SortableItems
           items={educations}
-          onReorder={reorderEducations}
-          update={(id, val) => setEducation(id, { name: val })}
-          del={deleteEducation}
-          label="Education"
+          onReorder={(newArray) => reorderItems("educations", newArray)}
+          update={(itemId, value) => setItem("educations", itemId, { name: value })}
+          del={(itemId) => deleteItem("educations", itemId)}
+          label="University"
         >
           {(education) => (
             <>
@@ -31,7 +31,7 @@ export const EducationDetails = ({ dragHandleProps }) => {
                   id={`period-${education.id}`}
                   className="educations__input"
                   value={education.period}
-                  onChange={(e) => setEducation(education.id, { period: e.target.value })}
+                  onChange={(e) => setItem("educations", education.id, { period: e.target.value })}
                 />
               </div>
               <div className="educations__position">
@@ -40,24 +40,24 @@ export const EducationDetails = ({ dragHandleProps }) => {
                   id={`position-${education.id}`}
                   className="educations__input"
                   value={education.degree}
-                  onChange={(e) => setEducation(education.id, { degree: e.target.value })}
+                  onChange={(e) => setItem("educations", education.id, { degree: e.target.value })}
                 />
               </div>
 
               <SortableItems
                 items={education.descriptions}
-                onReorder={(newDesc) => reorderDescriptions(education.id, newDesc)}
-                update={(descId, value) => setDescription(education.id, descId, { text: value })}
-                del={(descId) => deleteDescription(education.id, descId)}
+                onReorder={(newDesc) => reorderDescriptions("educations", education.id, newDesc)}
+                update={(descId, value) => setDescription("educations", education.id, descId, value)}
+                del={(descId) => deleteDescription("educations", education.id, descId)}
                 label="Description"
               />
 
-              <button className="educations__button educations__button--add-description" type="button" onClick={() => addDescription(education.id)}>+ Add Description</button>
+              <button className="educations__button educations__button--add-description" type="button" onClick={() => addDescription("educations", education.id)}>+ Add Description</button>
 
             </>
           )}
         </SortableItems>
-        <button className="educations__button educations__button--add-education" type="button" onClick={addEducation}>+ Add Education</button>
+        <button className="educations__button educations__button--add-education" type="button" onClick={() => addItem("educations")}>+ Add Education</button>
       </CollapsibleSection >
     </div >
   )

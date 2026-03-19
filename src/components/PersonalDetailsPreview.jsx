@@ -1,7 +1,7 @@
-import { usePersonal } from "../store/cvStore";
+import { useCvStore } from "../store/CvStore";
 
 export const PersonalDetailsPreview = () => {
-  const person = usePersonal(state => state.person);
+  const person = useCvStore(state => state.person);
 
   if (!person.firstName.trim()) return null;
 
