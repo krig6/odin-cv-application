@@ -1,6 +1,7 @@
 import { CollapsibleSection } from "./CollapsibleSection"
 import { useCvStore } from "../store/CvStore"
 import { SortableItems } from "./SortableSections";
+import { InputField } from "./Shared/InputField";
 import { AddButton } from "./Shared/Buttons";
 
 export const WorkExperience = ({ dragHandleProps }) => {
@@ -49,14 +50,14 @@ const WorkItems = ({ employment, setItem }) => {
         id={`period=${employment.id}`}
         value={employment.period}
         label="Period"
-        onChange={(e) => setItem("employments", employment.id, { period: e.target.value })}
+        onChange={(value) => setItem("employments", employment.id, { period: value })}
       />
 
       <InputField
         id={`position=${employment.id}`}
         value={employment.position}
         label="Position"
-        onChange={(e) => setItem("employments", employment.id, { position: e.target.value })}
+        onChange={(value) => setItem("employments", employment.id, { position: value })}
       />
 
       <SortableItems
