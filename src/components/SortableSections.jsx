@@ -46,7 +46,7 @@ export const SortableSections = ({ components }) => {
   );
 };
 
-export const SortableItems = ({ items, itemName = (item) => item.text ?? item.name ?? "", onReorder, update, del, label, children }) => {
+export const SortableItems = ({ items, onReorder, update, del, label, children }) => {
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -56,6 +56,14 @@ export const SortableItems = ({ items, itemName = (item) => item.text ?? item.na
     onReorder(arrayMove(items, oldIndex, newIndex));
   };
 
+  const getItemName = (item) => {
+    if ("text" in item) return item.text
+    if ("name" in item) return item.name
+    if ("company" in item) return item.company ?? ""
+    if ("university" in item) return item.university ?? ""
+    return ""
+  }
+
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
@@ -63,7 +71,7 @@ export const SortableItems = ({ items, itemName = (item) => item.text ?? item.na
           <SortableItem key={item.id} id={item.id}>
             <ItemField
               itemId={item.id}
-              itemName={itemName(item)}
+              itemName={getItemName(item)}
               update={(value) => update(item.id, value)}
               del={() => del(item.id)}
               label={label}
