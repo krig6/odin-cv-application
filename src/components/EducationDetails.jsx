@@ -2,7 +2,7 @@ import { CollapsibleSection } from "./CollapsibleSection"
 import { useCvStore } from "../store/CvStore";
 import { SortableItems } from "./SortableSections";
 import { InputField } from "./Shared/InputField";
-import { AddButton } from "./Shared/AddButton";
+import { AddButton } from "./Shared/Buttons";
 
 export const EducationDetails = ({ dragHandleProps }) => {
   const educations = useCvStore(state => state.educations)
@@ -30,10 +30,9 @@ export const EducationDetails = ({ dragHandleProps }) => {
           )}
         </SortableItems>
 
-        <AddButton
-          text="Add Education"
-          onClick={() => addItem("educations")}
-        />
+        <AddButton onClick={() => addItem("educations")}>
+          Add Education
+        </AddButton>
 
       </CollapsibleSection >
     </div >
@@ -70,10 +69,9 @@ const EducationItems = ({ education, setItem }) => {
         label="Description"
       />
 
-      <AddButton
-        text="Add Description"
-        onClick={() => addDescription("educations", education.id)}
-      />
+      <AddButton onClick={() => addDescription("educations", education.id)}>
+        Add Education Description
+      </AddButton>
     </>
   )
 }

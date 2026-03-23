@@ -4,6 +4,7 @@ import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-ki
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { TrashAlt, Move } from "@boxicons/react";
+import { IconButton } from "./Shared/Buttons";
 
 export const SortableItem = ({ id, children }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -79,7 +80,7 @@ export const SortableItems = ({ items, onReorder, update, del, label, children }
 const ItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
   return (
     <div className="sortable-item-field">
-      <Move {...dragHandleProps} />
+      <IconButton {...dragHandleProps} icon={<Move />} />
 
       <div className="sortable-item">
         <label htmlFor={`sortable-item-${itemId}`}>{label}</label>
@@ -88,7 +89,7 @@ const ItemField = ({ itemId, itemName, update, del, label, children, dragHandleP
           value={itemName}
           onChange={(e) => update(e.target.value)}
         />
-        <TrashAlt onClick={del} />
+        <IconButton icon={<TrashAlt />} onClick={del} />
         {children}
       </div>
     </div>

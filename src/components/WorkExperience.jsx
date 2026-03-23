@@ -1,7 +1,7 @@
 import { CollapsibleSection } from "./CollapsibleSection"
 import { useCvStore } from "../store/CvStore"
 import { SortableItems } from "./SortableSections";
-import { AddButton } from "./Shared/AddButton";
+import { AddButton } from "./Shared/Buttons";
 
 export const WorkExperience = ({ dragHandleProps }) => {
   const employments = useCvStore(state => state.employments)
@@ -27,10 +27,11 @@ export const WorkExperience = ({ dragHandleProps }) => {
             />
           )}
         </SortableItems >
-        <AddButton
-          text="Add Employment"
-          onClick={() => addItem("employments")}
-        />
+
+        <AddButton onClick={() => addItem("employments")}>
+          Add Employment
+        </AddButton>
+
       </CollapsibleSection >
     </div >
   )
@@ -66,10 +67,9 @@ const WorkItems = ({ employment, setItem }) => {
         label="Description"
       />
 
-      <AddButton
-        text="Add Description"
-        onClick={() => addDescription("employments", employment.id)}
-      />
+      <AddButton onClick={() => addDescription("employments", employment.id)}>
+        Add Employment Description
+      </AddButton>
     </>
   )
 }
