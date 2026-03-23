@@ -28,8 +28,8 @@ export const PersonalDetails = ({ dragHandleProps }) => {
 }
 
 const PersonInputs = () => {
-  const person = useCvStore(state => state.person)
-  const setPerson = useCvStore(state => state.setPerson)
+  const personal = useCvStore(state => state.personal)
+  const setPersonal = useCvStore(state => state.setPersonal)
   return personFieldsConfig.map(field => (
     <div className="personal-details__field" key={field.id} >
       <label className="personal-details__label" htmlFor={field.id}>{field.label}</label>
@@ -42,8 +42,8 @@ const PersonInputs = () => {
         autoComplete={field.autoComplete}
         inputMode={field.inputMode}
         pattern={field.pattern}
-        value={person[field.name] ?? ""}
-        onChange={(e) => setPerson({ [field.name]: e.target.value })}
+        value={personal[field.name] ?? ""}
+        onChange={(e) => setPersonal({ [field.name]: e.target.value })}
       />
     </div >
   ))

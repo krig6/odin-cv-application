@@ -5,7 +5,7 @@ import { InputField } from "./Shared/InputField";
 import { AddButton } from "./Shared/Buttons";
 
 export const EducationDetails = ({ dragHandleProps }) => {
-  const educations = useCvStore(state => state.educations)
+  const education = useCvStore(state => state.education)
   const addItem = useCvStore(state => state.addItem)
   const setItem = useCvStore(state => state.setItem)
   const deleteItem = useCvStore(state => state.deleteItem)
@@ -15,10 +15,10 @@ export const EducationDetails = ({ dragHandleProps }) => {
     <div className="education">
       <CollapsibleSection title="Education" dragHandleProps={dragHandleProps}>
         <SortableItems
-          items={educations}
-          onReorder={(newArray) => reorderItems("educations", newArray)}
-          update={(itemId, value) => setItem("educations", itemId, { name: value })}
-          del={(itemId) => deleteItem("educations", itemId)}
+          items={education}
+          onReorder={(newArray) => reorderItems("education", newArray)}
+          update={(itemId, value) => setItem("education", itemId, { name: value })}
+          del={(itemId) => deleteItem("education", itemId)}
           label="University"
         >
           {education => (
@@ -29,7 +29,7 @@ export const EducationDetails = ({ dragHandleProps }) => {
           )}
         </SortableItems>
 
-        <AddButton onClick={() => addItem("educations")}>
+        <AddButton onClick={() => addItem("education")}>
           Add Education
         </AddButton>
 
@@ -50,25 +50,25 @@ const EducationItems = ({ education, setItem }) => {
         id={`period-${education.id}`}
         value={education.period ?? ""}
         label="Period"
-        onChange={(value) => setItem("educations", education.id, { period: value })}
+        onChange={(value) => setItem("education", education.id, { period: value })}
       />
 
       <InputField
         id={`degree-${education.id}`}
         value={education.degree ?? ""}
         label="Degree"
-        onChange={(value) => setItem("educations", education.id, { degree: value })}
+        onChange={(value) => setItem("education", education.id, { degree: value })}
       />
 
       <SortableItems
         items={education.descriptions}
-        onReorder={(newDesc) => reorderDescriptions("educations", education.id, newDesc)}
-        update={(descId, value) => setDescription("educations", education.id, descId, value)}
-        del={(descId) => deleteDescription("educations", education.id, descId)}
+        onReorder={(newDesc) => reorderDescriptions("education", education.id, newDesc)}
+        update={(descId, value) => setDescription("education", education.id, descId, value)}
+        del={(descId) => deleteDescription("education", education.id, descId)}
         label="Description"
       />
 
-      <AddButton onClick={() => addDescription("educations", education.id)}>
+      <AddButton onClick={() => addDescription("education", education.id)}>
         Add Education Description
       </AddButton>
     </>

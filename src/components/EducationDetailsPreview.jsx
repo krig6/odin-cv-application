@@ -1,11 +1,11 @@
 import { useCvStore } from "../store/CvStore"
 
 export const EducationDetailsPreview = () => {
-  const educations = useCvStore(state => state.educations)
-  return educations.length > 0
+  const education = useCvStore(state => state.education)
+  return education.length > 0
     ? (<section className="preview-section" >
-      <h2 className="preview-section__title">Education</h2>
-      {educations
+      <h2 className="preview-section__title">education</h2>
+      {education
         .filter(education => (education.name ?? "").toString().trim() !== "")
         .map(education => (
           <div className="preview-section__content" key={education.id}>
