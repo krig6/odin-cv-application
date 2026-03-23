@@ -3,20 +3,20 @@ import { create } from "zustand";
 const addComponents = {
   skills: { name: "" },
   projects: { name: "", techStack: "", descriptions: [], live: "", repo: "" },
-  employments: { name: "", position: "", period: "", descriptions: [] },
-  educations: { name: "", degree: "", period: "", descriptions: [] }
+  work: { company: "", position: "", period: "", descriptions: [] },
+  education: { university: "", degree: "", period: "", descriptions: [] }
 }
 
 export const useCvStore = create((set) => ({
   // ========== PERSONAL INFO ==========
-  person: { jobTarget: "", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
+  personal: { jobTarget: "", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
   summary: "",
 
   // ========== SECTIONS ==========
   skills: [],
   projects: [],
-  employments: [],
-  educations: [],
+  work: [],
+  education: [],
 
   // ========== ITEM CRUD ==========
   // Add a new item to a section (skills, projects, employments, educations)
@@ -25,8 +25,8 @@ export const useCvStore = create((set) => ({
   })),
 
   // Update person object
-  setPerson: (update) => set(state => ({
-    person: { ...state.person, ...update }
+  setPersonal: (update) => set(state => ({
+    personal: { ...state.personal, ...update }
   })),
 
   // Update summary
