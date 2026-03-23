@@ -46,7 +46,7 @@ export const SortableSections = ({ components }) => {
   );
 };
 
-export const SortableItems = ({ items, onReorder, update, del, label, children }) => {
+export const SortableItems = ({ items, itemName = (item) => item.text ?? item.name ?? "", onReorder, update, del, label, children }) => {
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -63,7 +63,7 @@ export const SortableItems = ({ items, onReorder, update, del, label, children }
           <SortableItem key={item.id} id={item.id}>
             <ItemField
               itemId={item.id}
-              itemName={item.name ?? item.text ?? ""}
+              itemName={itemName(item)}
               update={(value) => update(item.id, value)}
               del={() => del(item.id)}
               label={label}

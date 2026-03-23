@@ -16,7 +16,6 @@ export const EducationDetails = ({ dragHandleProps }) => {
       <CollapsibleSection title="Education" dragHandleProps={dragHandleProps}>
         <SortableItems
           items={educations}
-          itemName={(item) => item.name}
           onReorder={(newArray) => reorderItems("educations", newArray)}
           update={(itemId, value) => setItem("educations", itemId, { name: value })}
           del={(itemId) => deleteItem("educations", itemId)}
