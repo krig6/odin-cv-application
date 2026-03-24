@@ -1,6 +1,6 @@
 import { CollapsibleSection } from "./CollapsibleSection"
 import { useCvStore } from "../store/CvStore"
-import { SortableItems } from "./SortableSections";
+import { SortableList } from "./SortableSections";
 import { InputField } from "./Shared/InputField";
 import { AddButton } from "./Shared/Buttons";
 
@@ -12,12 +12,12 @@ export const WorkExperience = ({ dragHandleProps }) => {
   const reorderItems = useCvStore(state => state.reorderItems);
 
   return (
-    <div className="work">
+    <section className="work">
       <CollapsibleSection title="Professional Experience" dragHandleProps={dragHandleProps}>
-        <SortableItems
+        <SortableList
           items={work}
           onReorder={(newArray) => reorderItems("work", newArray)}
-          update={(itemId, val) => setItem("work", itemId, { name: val })}
+          update={(itemId, val) => setItem("work", itemId, { company: val })}
           del={(itemId) => deleteItem("work", itemId)}
           label="Company"
         >
@@ -27,14 +27,12 @@ export const WorkExperience = ({ dragHandleProps }) => {
               setItem={setItem}
             />
           )}
-        </SortableItems >
-
+        </SortableList >
         <AddButton onClick={() => addItem("work")}>
           Add work
         </AddButton>
-
       </CollapsibleSection >
-    </div >
+    </section >
   )
 }
 
@@ -45,7 +43,8 @@ const WorkItems = ({ work, setItem }) => {
   const deleteDescription = useCvStore(state => state.deleteDescription)
 
   return (
-    <>
+    <article className="work__item">
+      <h3>{work.company || "Work Entry"}</h3>
       <InputField
         id={`period=${work.id}`}
         value={work.period}
@@ -60,7 +59,7 @@ const WorkItems = ({ work, setItem }) => {
         onChange={(value) => setItem("work", work.id, { position: value })}
       />
 
-      <SortableItems
+      <SortableList
         items={work.descriptions}
         onReorder={(newDesc) => reorderDescriptions("work", work.id, newDesc)}
         update={(descId, value) => setDescription("work", work.id, descId, value)}
@@ -71,6 +70,6 @@ const WorkItems = ({ work, setItem }) => {
       <AddButton onClick={() => addDescription("work", work.id)}>
         Add work Description
       </AddButton>
-    </>
+    </article>
   )
 }

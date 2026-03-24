@@ -1,5 +1,5 @@
-import { CollapsibleSection } from "./CollapsibleSection"
-import { useCvStore } from "../store/CvStore"
+import { CollapsibleSection } from "./CollapsibleSection";
+import { useCvStore } from "../store/CvStore";
 
 const personFieldsConfig = [
   { name: "jobTarget", id: "job-target", label: "Job Target", type: "text", placeholder: "The role you want" },
@@ -13,38 +13,39 @@ const personFieldsConfig = [
   { name: "cityState", id: "city-state", label: "City/State", type: "text" },
   { name: "postalCode", id: "postal-code", label: "Postal Code", type: "text", autoComplete: "postal-code", inputMode: "numeric" },
   { name: "country", id: "country", label: "Country", type: "text", autoComplete: "country-name" },
-]
+];
 
-export const PersonalDetails = ({ dragHandleProps }) => {
-  return (
-    <div className="personal-details">
-      <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
-        <div className="personal-details__fields">
-          <PersonInputs />
-        </div>
-      </CollapsibleSection>
-    </div>
-  )
-}
+export const PersonalDetails = ({ dragHandleProps }) => (
+  <section className="personal-details">
+    <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
+      <div className="personal-details__fields">
+        <PersonInputs />
+      </div>
+    </CollapsibleSection>
+  </section>
+);
 
 const PersonInputs = () => {
-  const personal = useCvStore(state => state.personal)
-  const setPersonal = useCvStore(state => state.setPersonal)
+  const personal = useCvStore(state => state.personal);
+  const setPersonal = useCvStore(state => state.setPersonal);
+
   return personFieldsConfig.map(field => (
-    <div className="personal-details__field" key={field.id} >
-      <label className="personal-details__label" htmlFor={field.id}>{field.label}</label>
+    <div className="personal-details__field" key={field.id}>
+      <label className="input__label" htmlFor={field.id}>
+        {field.label}
+      </label>
       <input
-        className="personal-details__input"
         id={field.id}
         name={field.name}
         type={field.type}
-        placeholder={field.placeholder ?? ""}
-        autoComplete={field.autoComplete}
-        inputMode={field.inputMode}
-        pattern={field.pattern}
+        className="personal-details__input"
         value={personal[field.name] ?? ""}
+        {...(field.placeholder && { placeholder: field.placeholder })}
+        {...(field.autoComplete && { autoComplete: field.autoComplete })}
+        {...(field.inputMode && { inputMode: field.inputMode })}
+        {...(field.pattern && { pattern: field.pattern })}
         onChange={(e) => setPersonal({ [field.name]: e.target.value })}
       />
-    </div >
-  ))
-}
+    </div>
+  ));
+};

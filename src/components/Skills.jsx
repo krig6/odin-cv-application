@@ -1,6 +1,6 @@
 import { CollapsibleSection } from "./CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
-import { SortableItems } from "./SortableSections";
+import { SortableList } from "./SortableSections";
 import { AddButton } from "./Shared/Buttons";
 
 export const Skills = ({ dragHandleProps }) => {
@@ -11,9 +11,9 @@ export const Skills = ({ dragHandleProps }) => {
   const reorderItems = useCvStore(state => state.reorderItems);
 
   return (
-    <div className="skills">
+    <section className="skills">
       <CollapsibleSection title="Skills" dragHandleProps={dragHandleProps}>
-        <SortableItems
+        <SortableList
           items={skills}
           onReorder={(newArray) => reorderItems("skills", newArray)}
           update={(itemId, val) => setItem("skills", itemId, { name: val })}
@@ -25,6 +25,6 @@ export const Skills = ({ dragHandleProps }) => {
           Add Skills
         </AddButton>
       </CollapsibleSection>
-    </div>
+    </section>
   );
 };

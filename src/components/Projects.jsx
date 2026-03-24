@@ -1,6 +1,6 @@
 import { CollapsibleSection } from "./CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
-import { SortableItems } from "./SortableSections";
+import { SortableList } from "./SortableSections";
 import { InputField } from "./Shared/InputField";
 import { AddButton } from "./Shared/Buttons";
 
@@ -12,10 +12,9 @@ export const Projects = ({ dragHandleProps }) => {
   const reorderItems = useCvStore(state => state.reorderItems);
 
   return (
-    <div className="projects">
+    <section className="projects">
       <CollapsibleSection title="Projects" dragHandleProps={dragHandleProps}>
-
-        <SortableItems
+        <SortableList
           items={projects}
           onReorder={(newArray) => reorderItems("projects", newArray)}
           update={(itemId, val) => setItem("projects", itemId, { name: val })}
@@ -28,14 +27,12 @@ export const Projects = ({ dragHandleProps }) => {
               setItem={setItem}
             />
           )}
-        </SortableItems>
-
+        </SortableList>
         <AddButton onClick={() => addItem("projects")}>
           Add Project
         </AddButton>
-
       </CollapsibleSection>
-    </div >
+    </section >
   );
 };
 
@@ -46,7 +43,8 @@ const ProjectItems = ({ project, setItem }) => {
   const deleteDescription = useCvStore(state => state.deleteDescription)
 
   return (
-    <>
+    <article className="project__item">
+      <h3>{project.name || "Project Entry"}</h3>
       <InputField
         id={`tech-${project.id}`}
         value={project.techStack ?? ""}
@@ -75,7 +73,7 @@ const ProjectItems = ({ project, setItem }) => {
         />
       </div>
 
-      <SortableItems
+      <SortableList
         items={project.descriptions}
         onReorder={(newDesc) => reorderDescriptions("projects", project.id, newDesc)}
         update={(descId, value) => setDescription("projects", project.id, descId, value)}
@@ -86,6 +84,6 @@ const ProjectItems = ({ project, setItem }) => {
       <AddButton onClick={() => addDescription("projects", project.id)}>
         Add Project Description
       </AddButton>
-    </>
+    </article>
   )
 }
