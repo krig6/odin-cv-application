@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { TrashAlt, Move } from "@boxicons/react";
+import { TrashAlt, Apps } from "@boxicons/react";
 import { IconButton } from "./Shared/Buttons";
 
-export const SortableItem = ({ id, children }) => {
+export const SortableItem = ({ id, children, as: Component = 'div' }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
 
   const style = {
@@ -15,30 +15,28 @@ export const SortableItem = ({ id, children }) => {
   };
 
   return (
-    <div ref={setNodeRef} style={style}>
+    <Component ref={setNodeRef} style={style}>
       {React.cloneElement(children, { dragHandleProps: { ...attributes, ...listeners } })}
-    </div>
+    </Component>
   );
 };
 
-export const SortableSections = ({ components }) => {
-  const [items, setItems] = useState(components);
+export const SortableSection = ({ sections, onReorder }) => {
+  const handleDragEnd = ({ active, over }) => {
+    if (!over || active.id === over.id) return;
 
-  const handleDragEnd = (event) => {
-    const { active, over } = event;
-    if (over && active.id !== over.id) {
-      const oldIndex = items.findIndex(i => i.id === active.id);
-      const newIndex = items.findIndex(i => i.id === over.id);
-      setItems(arrayMove(items, oldIndex, newIndex));
-    }
+    const oldIndex = sections.findIndex(section => section.id === active.id);
+    const newIndex = sections.findIndex(section => section.id === over.id);
+
+    onReorder(arrayMove(sections, oldIndex, newIndex));
   };
 
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-      <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
-        {items.map((item) => (
-          <SortableItem key={item.id} id={item.id}>
-            {item.component}
+      <SortableContext items={sections.map(section => section.id)} strategy={verticalListSortingStrategy}>
+        {sections.map((section) => (
+          <SortableItem key={section.id} id={section.id}>
+            {section.component}
           </SortableItem>
         ))}
       </SortableContext>
@@ -46,7 +44,7 @@ export const SortableSections = ({ components }) => {
   );
 };
 
-export const SortableItems = ({ items, onReorder, update, del, label, children }) => {
+export const SortableList = ({ items, onReorder, update, del, label, children }) => {
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -67,19 +65,21 @@ export const SortableItems = ({ items, onReorder, update, del, label, children }
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
-        {items.map(item => (
-          <SortableItem key={item.id} id={item.id}>
-            <ItemField
-              itemId={item.id}
-              itemName={getItemName(item)}
-              update={(value) => update(item.id, value)}
-              del={() => del(item.id)}
-              label={label}
-            >
-              {children ? children(item) : null}
-            </ItemField>
-          </SortableItem>
-        ))}
+        <ul className="sortable-items">
+          {items.map(item => (
+            <SortableItem key={item.id} as="li" id={item.id}>
+              <ItemField
+                itemId={item.id}
+                itemName={getItemName(item)}
+                update={(value) => update(item.id, value)}
+                del={() => del(item.id)}
+                label={label}
+              >
+                {children ? children(item) : null}
+              </ItemField>
+            </SortableItem>
+          ))}
+        </ul>
       </SortableContext>
     </DndContext>
   );
@@ -88,16 +88,24 @@ export const SortableItems = ({ items, onReorder, update, del, label, children }
 const ItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
   return (
     <div className="sortable-item-field">
-      <IconButton {...dragHandleProps} icon={<Move />} />
+      <IconButton {...dragHandleProps} icon={<Apps />} />
 
-      <div className="sortable-item">
-        <label htmlFor={`sortable-item-${itemId}`}>{label}</label>
+      <div className="sortable-item-field__content">
+        <label className="input__label" htmlFor={`sortable-item-${itemId}`}>
+          {label}
+        </label>
         <input
           id={`sortable-item-${itemId}`}
+          className="sortable-item-field__input"
           value={itemName}
           onChange={(e) => update(e.target.value)}
+          placeholder=""
         />
-        <IconButton icon={<TrashAlt />} onClick={del} />
+        <IconButton
+          className="sortable-item-field__delete"
+          icon={<TrashAlt />}
+          onClick={del}
+        />
         {children}
       </div>
     </div>
