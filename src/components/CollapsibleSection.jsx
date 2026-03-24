@@ -1,36 +1,31 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from "@boxicons/react";
+import { Apps } from "@boxicons/react";
+import { IconButton } from "./Shared/Buttons";
 
-export const CollapsibleSection = ({
-  title,
-  children,
-  defaultOpen = false,
-  dragHandleProps,
-}) => {
+export const CollapsibleSection = ({ title, children, defaultOpen = false, dragHandleProps }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="collapsible-section">
-      <div className="collapsible-section__header">
-        <div className="collapsible-section__drag-handle" {...dragHandleProps}>
-          <span></span><span></span>
-          <span></span><span></span>
-          <span></span><span></span>
-        </div>
+    <section className="collapsible-section">
+      <header className="collapsible-section__header">
+        {dragHandleProps && (
+          <IconButton
+            icon={<Apps />}
+            {...dragHandleProps} />
+        )}
 
         <h2 className="collapsible-section__title">{title}</h2>
 
-        <div
-          className="collapsible-section__chevron"
+        <IconButton
+          icon={isOpen ? <ChevronUp /> : <ChevronDown />}
           onClick={() => setIsOpen(prev => !prev)}
-        >
-          {isOpen ? <ChevronUp /> : <ChevronDown />}
-        </div>
-      </div>
+        />
+      </header>
 
       {isOpen && (
         <div className="collapsible-section__content">{children}</div>
       )}
-    </div>
+    </section>
   );
 };
