@@ -20,6 +20,7 @@ export const WorkExperience = ({ dragHandleProps }) => {
           update={(itemId, val) => setItem("work", itemId, { company: val })}
           del={(itemId) => deleteItem("work", itemId)}
           label="Company"
+          className="sortable-list__main"
         >
           {work => (
             <WorkItems
@@ -68,7 +69,7 @@ const WorkItems = ({ work, setItem }) => {
       />
 
       <AddButton onClick={() => addDescription("work", work.id)}>
-        Add work Description
+        Add Work Description
       </AddButton>
     </article>
   )

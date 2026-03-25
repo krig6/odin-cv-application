@@ -20,6 +20,7 @@ export const EducationDetails = ({ dragHandleProps }) => {
           update={(itemId, value) => setItem("education", itemId, { university: value })}
           del={(itemId) => deleteItem("education", itemId)}
           label="University"
+          className="sortable-list__main"
         >
           {item => (
             <EducationItems

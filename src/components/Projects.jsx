@@ -20,6 +20,7 @@ export const Projects = ({ dragHandleProps }) => {
           update={(itemId, val) => setItem("projects", itemId, { name: val })}
           del={(itemId) => deleteItem("projects", itemId)}
           label="Project"
+          className="sortable-list__main"
         >
           {project => (
             <ProjectItems

@@ -44,7 +44,7 @@ export const SortableSection = ({ sections, onReorder }) => {
   );
 };
 
-export const SortableList = ({ items, onReorder, update, del, label, children }) => {
+export const SortableList = ({ items, onReorder, update, del, label, className, children }) => {
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -74,6 +74,7 @@ export const SortableList = ({ items, onReorder, update, del, label, children })
                 update={(value) => update(item.id, value)}
                 del={() => del(item.id)}
                 label={label}
+                className={className}
               >
                 {children ? children(item) : null}
               </ItemField>
@@ -81,7 +82,7 @@ export const SortableList = ({ items, onReorder, update, del, label, children })
           ))}
         </ul>
       </SortableContext>
-    </DndContext>
+    </DndContext >
   );
 };
 
@@ -106,6 +107,7 @@ const ItemField = ({ itemId, itemName, update, del, label, className, children, 
         </div>
         <IconButton icon={<TrashAlt />} onClick={del} />
       </div>
+      {children}
     </div>
   );
 };
