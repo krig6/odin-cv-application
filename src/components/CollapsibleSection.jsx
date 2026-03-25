@@ -8,7 +8,7 @@ export const CollapsibleSection = ({ title, children, defaultOpen = false, dragH
 
   return (
     <section className="collapsible-section">
-      <header className="collapsible-section__header">
+      <header className={`collapsible-section__header ${isOpen ? 'open' : ''}`}>
         {dragHandleProps && (
           <IconButton
             icon={<Apps />}
