@@ -9,7 +9,7 @@ export const Summary = ({ dragHandleProps }) => {
       <CollapsibleSection title="Summary" dragHandleProps={dragHandleProps}>
         <div className="summary__fields">
           <div className="summary__field">
-            <label className="summary__label" htmlFor="summary-text">Summary</label>
+            <label className="input__label" htmlFor="summary-text">Summary</label>
             <textarea
               id="summary-text"
               className="summary__input"
