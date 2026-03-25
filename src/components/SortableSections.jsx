@@ -85,28 +85,26 @@ export const SortableList = ({ items, onReorder, update, del, label, children })
   );
 };
 
-const ItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
+const ItemField = ({ itemId, itemName, update, del, label, className, children, dragHandleProps }) => {
   return (
-    <div className="sortable-item-field">
-      <IconButton {...dragHandleProps} icon={<Apps />} />
+    <div className={`${className} sortable-item-field`}>
+      <div className="sortable-item-field__header">
 
-      <div className="sortable-item-field__content">
-        <label className="input__label" htmlFor={`sortable-item-${itemId}`}>
-          {label}
-        </label>
-        <input
-          id={`sortable-item-${itemId}`}
-          className="sortable-item-field__input"
-          value={itemName}
-          onChange={(e) => update(e.target.value)}
-          placeholder=""
-        />
-        <IconButton
-          className="sortable-item-field__delete"
-          icon={<TrashAlt />}
-          onClick={del}
-        />
-        {children}
+        <IconButton {...dragHandleProps} icon={<Apps />} />
+
+        <div>
+          <label className="input__label" htmlFor={`sortable-item-${itemId}`}>
+            {label}
+          </label>
+          <input
+            id={`sortable-item-${itemId}`}
+            className="sortable-item-field__input"
+            value={itemName}
+            onChange={(e) => update(e.target.value)}
+            placeholder=""
+          />
+        </div>
+        <IconButton icon={<TrashAlt />} onClick={del} />
       </div>
     </div>
   );
