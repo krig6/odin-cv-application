@@ -30,7 +30,7 @@ export const WorkExperience = ({ dragHandleProps }) => {
           )}
         </SortableList >
         <AddButton onClick={() => addItem("work")}>
-          Add work
+          Work
         </AddButton>
       </CollapsibleSection >
     </section >
@@ -46,19 +46,22 @@ const WorkItems = ({ work, setItem }) => {
   return (
     <article className="work__item">
       <h3>{work.company || "Work Entry"}</h3>
-      <InputField
-        id={`period=${work.id}`}
-        value={work.period}
-        label="Period"
-        onChange={(value) => setItem("work", work.id, { period: value })}
-      />
 
-      <InputField
-        id={`position=${work.id}`}
-        value={work.position}
-        label="Position"
-        onChange={(value) => setItem("work", work.id, { position: value })}
-      />
+      <div className="work__info">
+        <InputField
+          id={`period=${work.id}`}
+          value={work.period}
+          label="Period"
+          onChange={(value) => setItem("work", work.id, { period: value })}
+        />
+
+        <InputField
+          id={`position=${work.id}`}
+          value={work.position}
+          label="Position"
+          onChange={(value) => setItem("work", work.id, { position: value })}
+        />
+      </div>
 
       <SortableList
         items={work.descriptions}
@@ -69,7 +72,7 @@ const WorkItems = ({ work, setItem }) => {
       />
 
       <AddButton onClick={() => addDescription("work", work.id)}>
-        Add Work Description
+        Description
       </AddButton>
     </article>
   )

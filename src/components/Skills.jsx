@@ -22,7 +22,7 @@ export const Skills = ({ dragHandleProps }) => {
           containerClass="skills"
         />
         <AddButton onClick={() => addItem("skills")}>
-          Add Skills
+          Skills
         </AddButton>
       </CollapsibleSection>
     </section>

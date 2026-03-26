@@ -30,7 +30,7 @@ export const Projects = ({ dragHandleProps }) => {
           )}
         </SortableList>
         <AddButton onClick={() => addItem("projects")}>
-          Add Project
+          Project
         </AddButton>
       </CollapsibleSection>
     </section >
@@ -83,7 +83,7 @@ const ProjectItems = ({ project, setItem }) => {
       />
 
       <AddButton onClick={() => addDescription("projects", project.id)}>
-        Add Project Description
+        Description
       </AddButton>
     </article>
   )

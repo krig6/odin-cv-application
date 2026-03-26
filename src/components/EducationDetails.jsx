@@ -30,7 +30,7 @@ export const EducationDetails = ({ dragHandleProps }) => {
           )}
         </SortableList>
         <AddButton onClick={() => addItem("education")}>
-          Add Education
+          Education
         </AddButton>
       </CollapsibleSection>
     </section>
@@ -46,19 +46,22 @@ const EducationItems = ({ education, setItem }) => {
   return (
     <article className="education__item">
       <h3>{education.university || "Education Entry"}</h3>
-      <InputField
-        id={`period-${education.id}`}
-        value={education.period ?? ""}
-        label="Period"
-        onChange={(value) => setItem("education", education.id, { period: value })}
-      />
 
-      <InputField
-        id={`degree-${education.id}`}
-        value={education.degree ?? ""}
-        label="Degree"
-        onChange={(value) => setItem("education", education.id, { degree: value })}
-      />
+      <div className="educ__info">
+        <InputField
+          id={`period-${education.id}`}
+          value={education.period ?? ""}
+          label="Period"
+          onChange={(value) => setItem("education", education.id, { period: value })}
+        />
+
+        <InputField
+          id={`degree-${education.id}`}
+          value={education.degree ?? ""}
+          label="Degree"
+          onChange={(value) => setItem("education", education.id, { degree: value })}
+        />
+      </div>
 
       <SortableList
         items={education.descriptions}
@@ -69,7 +72,7 @@ const EducationItems = ({ education, setItem }) => {
       />
 
       <AddButton onClick={() => addDescription("education", education.id)}>
-        Add Education Description
+        Description
       </AddButton>
     </article>
   )

@@ -1,6 +1,6 @@
 export const InputField = ({ id, value, label, onChange }) => {
   return (
-    <div className="input__field">
+    <div>
       <label htmlFor={id} className="input__label">{label}</label>
       <input
         id={id}
