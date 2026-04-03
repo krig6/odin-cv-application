@@ -59,6 +59,7 @@ export const SortableList = ({ items, onReorder, update, del, label, className, 
     if ("name" in item) return item.name
     if ("company" in item) return item.company ?? ""
     if ("university" in item) return item.university ?? ""
+    if ("category" in item) return item.category ?? ""
     return ""
   }
 
