@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const addComponents = {
-  skills: { name: "" },
+  skills: { category: "", entries: [] },
   projects: { name: "", techStack: "", descriptions: [], live: "", repo: "" },
   work: { company: "", position: "", period: "", descriptions: [] },
   education: { university: "", degree: "", period: "", descriptions: [] }
@@ -87,5 +87,55 @@ export const useCvStore = create((set) => ({
 
       return { ...item, descriptions: newDescriptionsArray }
     })
-  }))
+  })),
+
+  // ========== SKILL METHODS ==========
+  // Add a new empty skill entry to a specific skill category
+  addSkill: (skillId) => set(state => ({
+    skills: state.skills.map((skill) => {
+      if (skill.id !== skillId) return skill
+
+      return {
+        ...skill,
+        entries: [...skill.entries, { id: crypto.randomUUID(), name: "" }]
+      }
+    })
+  })),
+
+  // Update the name of a specific skill entry within a category
+  setSkill: (skillId, itemId, newValue) => set(state => ({
+    skills: state.skills.map((skill) => {
+      if (skill.id !== skillId) return skill
+
+      return {
+        ...skill,
+        entries: skill.entries.map((item) => {
+          if (item.id !== itemId) return item
+
+          return { ...item, name: newValue }
+        })
+      }
+    })
+  })),
+
+  // Remove a specific skill entry from a category
+  deleteSkill: (skillId, itemId) => set(state => ({
+    skills: state.skills.map((skill) => {
+      if (skill.id !== skillId) return skill
+
+      return {
+        ...skill,
+        entries: skill.entries.filter((entry) => entry.id !== itemId)
+      }
+    })
+  })),
+
+  // Replace the entire entries array for a category
+  reorderSkills: (skillId, newSkillArray) => set(state => ({
+    skills: state.skills.map((skill) => {
+      if (skill.id !== skillId) return skill
+
+      return { ...skill, entries: newSkillArray }
+    })
+  })),
 }))
