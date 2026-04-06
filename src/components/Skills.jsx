@@ -2,6 +2,7 @@ import { CollapsibleSection } from "./CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
 import { SortableList } from "./SortableSections";
 import { AddButton } from "./Shared/Buttons";
+import pluralize from "pluralize";
 
 export const Skills = ({ dragHandleProps }) => {
   const skills = useCvStore(state => state.skills)
@@ -43,6 +44,7 @@ const SkillItems = ({ skill }) => {
   const setSkill = useCvStore(state => state.setSkill)
   const deleteSkill = useCvStore(state => state.deleteSkill)
   const addSkill = useCvStore(state => state.addSkill)
+  const category = pluralize.singular(skill.category || "Skill")
 
   return (
     <article className="project__item">
@@ -53,11 +55,11 @@ const SkillItems = ({ skill }) => {
         onReorder={(newSkill) => reorderSkills(skill.id, newSkill)}
         update={(itemId, value) => setSkill(skill.id, itemId, value)}
         del={(itemId) => deleteSkill(skill.id, itemId)}
-        label="Skill"
+        label={category}
       />
 
       <AddButton onClick={() => addSkill(skill.id)}>
-        Skill
+        {category}
       </AddButton>
     </article>
   )
