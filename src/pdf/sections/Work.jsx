@@ -1,25 +1,30 @@
 import { View, Text } from "@react-pdf/renderer";
+import { pdfStyles } from "../pdfStyles";
 
 export const Work = ({ work }) => {
   return (
     <View>
-      <Text>PROFESSIONAL EXPERIENCE</Text>
-
       {work
         .filter((work) => work.company && work.company.trim() !== "")
         .map((work) => (
-          <View key={work.id}>
+          <View key={work.id} style={pdfStyles.itemContainer}>
+            <Text style={pdfStyles.sectionHeading}>EXPERIENCE</Text>
+            <View style={pdfStyles.rowBetween}>
+              <Text style={pdfStyles.subHeading}>
+                {work.company}
+              </Text>
 
-            <Text>
-              {work.company}{work.period}
-            </Text>
+              <Text style={pdfStyles.subHeading}>
+                {work.period}
+              </Text>
+            </View>
 
-            <Text>
+            <Text style={{ ...pdfStyles.bodyText, fontWeight: "bold" }}>
               {work.position}
             </Text>
 
             {work.descriptions?.map((desc) => (
-              <Text key={desc.id}>
+              <Text key={desc.id} style={pdfStyles.bodyText}>
                 • {desc.text}
               </Text>
             ))}

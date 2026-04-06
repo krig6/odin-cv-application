@@ -1,12 +1,18 @@
 import { View, Text } from "@react-pdf/renderer";
+import { pdfStyles } from "../pdfStyles";
 
 export const Summary = ({ summary }) => {
   return (
-    <View >
-      <Text>SUMMARY</Text>
-      < Text>
-        {summary}
-      </Text>
-    </View >
+    <View>
+      {summary && (
+        <View>
+          <Text style={pdfStyles.sectionHeading}>SUMMARY</Text>
+          <Text style={{ ...pdfStyles.bodyText, marginBottom: 8 }}>
+            {summary}
+          </Text>
+        </View>
+      )
+      }
+    </View>
   )
 }

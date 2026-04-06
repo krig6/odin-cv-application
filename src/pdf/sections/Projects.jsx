@@ -1,31 +1,41 @@
-import { View, Text } from "@react-pdf/renderer";
+import { View, Text, Link } from "@react-pdf/renderer";
+import { pdfStyles } from "../pdfStyles";
 
 export const Projects = ({ projects }) => {
   return (
     <View>
-      <Text>PROJECTS</Text>
+      <Text style={pdfStyles.sectionHeading}>PROJECTS</Text>
 
       {projects
         .filter((project) => project.name && project.name.trim() !== "")
         .map((project) => (
-          <View key={project.id}>
+          <View key={project.id} style={pdfStyles.itemContainer}>
 
-            <Text>
-              {project.name} - {project.techStack}
+            <Text style={pdfStyles.subHeading}>
+              <Text style={{ fontWeight: "bold" }}>{project.name}</Text>
+              {" - "}
+              <Text style={{ fontWeight: "normal" }}>{project.techStack}</Text>
             </Text>
 
             {project.descriptions?.map((desc) => (
-              <Text key={desc.id}>
+              <Text key={desc.id} style={pdfStyles.bodyText}>
                 • {desc.text}
               </Text>
             ))}
 
-            <View>
-              <Text>Live: {project.live} Repo: {project.repo}</Text>
-            </View>
+            <Text style={pdfStyles.bodyText}>
+              Live:{" "}
+              <Link src={project.live} style={pdfStyles.link}>
+                {project.live}
+              </Link>{" "}
+              Repo:{" "}
+              <Link src={project.repo} style={pdfStyles.link}>
+                {project.repo}
+              </Link>
+            </Text>
 
           </View>
         ))}
-    </View>
+    </View >
   );
 };
