@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { SECTIONS_INPUTS } from "../../data/sectionsMap.js"
-import { SortableSection } from "../SortableSections"
+import { SECTIONS_INPUTS } from "../../data/sectionsMap"
+import { SortableSection } from "../Shared/SortableSections"
 
 export const CvSections = () => {
   const [sections, setSections] = useState([...SECTIONS_INPUTS])

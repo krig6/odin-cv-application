@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from "@boxicons/react";
 import { Apps } from "@boxicons/react";
-import { IconButton } from "./Shared/Buttons";
+import { IconButton } from "./Buttons";
 
 export const CollapsibleSection = ({ title, children, defaultOpen = false, dragHandleProps }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);

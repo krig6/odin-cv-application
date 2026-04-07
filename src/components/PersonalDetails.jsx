@@ -1,4 +1,4 @@
-import { CollapsibleSection } from "./CollapsibleSection";
+import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
 
 const personFieldsConfig = [

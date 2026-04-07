@@ -4,7 +4,7 @@ import { SortableContext, arrayMove, verticalListSortingStrategy } from "@dnd-ki
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { TrashAlt, Apps } from "@boxicons/react";
-import { IconButton } from "./Shared/Buttons";
+import { IconButton } from "./Buttons";
 
 export const SortableItem = ({ id, children, as: Component = 'div' }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });

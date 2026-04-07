@@ -1,4 +1,4 @@
-import { CollapsibleSection } from "./CollapsibleSection";
+import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
 
 export const Summary = ({ dragHandleProps }) => {

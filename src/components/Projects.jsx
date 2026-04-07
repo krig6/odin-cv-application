@@ -1,6 +1,6 @@
-import { CollapsibleSection } from "./CollapsibleSection";
+import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
-import { SortableList } from "./SortableSections";
+import { SortableList } from "./Shared/SortableSections";
 import { InputField } from "./Shared/InputField";
 import { AddButton } from "./Shared/Buttons";
 
