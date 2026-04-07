@@ -12,6 +12,14 @@ import { WorkExperiencePreview } from "../components/WorkExperiencePreview"
 import { ProjectPreview } from "../components/ProjectPreview"
 import { EducationDetailsPreview } from "../components/EducationDetailsPreview"
 
+import { Personal as PersonalPDF } from "../pdf/sections/Personal"
+import { Summary as SummaryPDF } from "../pdf/sections/Summary";
+import { Skills as SkillsPDF } from "../pdf/sections/Skills"
+import { Projects as ProjectsPDF } from "../pdf/sections/Projects"
+import { Work as WorkPDF } from "../pdf/sections/Work";
+import { Education as EducationPDF } from "../pdf/sections/Education";
+
+
 export const SECTIONS_INPUTS = [
   { id: "personal", component: PersonalDetails },
   { id: "summary", component: Summary },
@@ -29,3 +37,13 @@ export const SECTIONS_PREVIEWS = [
   { id: "work", preview: WorkExperiencePreview },
   { id: "education", preview: EducationDetailsPreview },
 ]
+
+export const SECTIONS_PDF = [
+  { id: "personal", pdf: PersonalPDF },
+  { id: "summary", pdf: SummaryPDF },
+  { id: "skills", pdf: SkillsPDF },
+  { id: "projects", pdf: ProjectsPDF },
+  { id: "work", pdf: WorkPDF },
+  { id: "education", pdf: EducationPDF },
+]
+

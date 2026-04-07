@@ -3,8 +3,9 @@ import { IconButton } from "../components/Shared/Buttons"
 import { CvDocument } from "./CvDocument";
 import { useCvStore } from "../store/CvStore";
 import { pdf } from "@react-pdf/renderer";
+import { SECTIONS_PDF } from "../data/sectionsMap";
 
-export const CvPDF = ({ sections }) => {
+export const CvPDF = () => {
   const personal = useCvStore(state => state.personal)
   const summary = useCvStore(state => state.summary)
   const skills = useCvStore(state => state.skills)
@@ -21,7 +22,7 @@ export const CvPDF = ({ sections }) => {
         projects={projects}
         work={work}
         education={education}
-        sections={sections}
+        sections={SECTIONS_PDF}
       />
     ).toBlob();
 
