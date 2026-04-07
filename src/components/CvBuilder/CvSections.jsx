@@ -6,11 +6,9 @@ export const CvSections = () => {
   const [sections, setSections] = useState([...SECTIONS_INPUTS])
 
   return (
-    <section className="cv-builder__inputs">
-      <SortableSection
-        sections={sections}
-        onReorder={setSections}
-      />
-    </section>
+    <SortableSection
+      sections={sections}
+      onReorder={setSections}
+    />
   )
 }
