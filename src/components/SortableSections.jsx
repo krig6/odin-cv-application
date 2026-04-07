@@ -34,13 +34,16 @@ export const SortableSection = ({ sections, onReorder }) => {
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={sections.map(section => section.id)} strategy={verticalListSortingStrategy}>
-        {sections.map((section) => (
-          <SortableItem key={section.id} id={section.id}>
-            {section.component}
-          </SortableItem>
-        ))}
+        {sections.map((section) => {
+          const Component = section.component
+          return (
+            <SortableItem key={section.id} id={section.id} >
+              <Component />
+            </SortableItem>
+          )
+        })}
       </SortableContext>
-    </DndContext>
+    </DndContext >
   );
 };
 
