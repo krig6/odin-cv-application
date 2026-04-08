@@ -1,9 +1,7 @@
 import { PersonalDetails } from "../components/PersonalDetails";
 import { Summary } from "../components/Summary";
 import { Skills } from "../components/Skills";
-import { Projects } from "../components/Projects"
-import { WorkExperience } from "../components/WorkExperience";
-import { EducationDetails } from "../components/EducationDetails";
+import { ConfigSection } from "../components/Shared/ConfigSection";
 
 import { PersonalDetailsPreview } from "../components/PersonalDetailsPreview"
 import { SkillsPreview } from "../components/SkillsPreview"
@@ -24,9 +22,58 @@ export const SECTIONS_INPUTS = [
   { id: "personal", component: PersonalDetails },
   { id: "summary", component: Summary },
   { id: "skills", component: Skills },
-  { id: "projects", component: Projects },
-  { id: "work", component: WorkExperience },
-  { id: "education", component: EducationDetails },
+  {
+    id: "projects",
+    component: ConfigSection,
+    config: {
+      title: "Projects",
+      storeKey: "projects",
+      className: "project__item",
+      mainField: {
+        key: "name",
+        fallback: "Project Entry"
+      },
+      fields: [
+        { key: "techStack", label: "Tech Stack" },
+        { key: "live", label: "Live" },
+        { key: "Repo", label: "Repo" },
+      ]
+    }
+  },
+  {
+    id: "work",
+    component: ConfigSection,
+    config: {
+      title: "Professional Experience",
+      storeKey: "work",
+      className: "work__item",
+      mainField: {
+        key: "company",
+        fallback: "Work Entry"
+      },
+      fields: [
+        { key: "position", label: "Position" },
+        { key: "period", label: "Period" },
+      ]
+    }
+  },
+  {
+    id: "education",
+    component: ConfigSection,
+    config: {
+      title: "Education",
+      storeKey: "education",
+      className: "education_item",
+      mainField: {
+        key: "university",
+        fallback: "Education Entry"
+      },
+      fields: [
+        { key: "degree", label: "Degree" },
+        { key: "period", label: "Period" },
+      ]
+    }
+  },
 ]
 
 export const SECTIONS_PREVIEWS = [
