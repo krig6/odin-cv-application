@@ -36,9 +36,12 @@ export const SortableSection = ({ sections, onReorder }) => {
       <SortableContext items={sections.map(section => section.id)} strategy={verticalListSortingStrategy}>
         {sections.map((section) => {
           const Component = section.component
+
           return (
-            <SortableItem key={section.id} id={section.id} >
-              <Component />
+            <SortableItem key={section.id} id={section.id}>
+              <Component
+                {...(section.config && { config: section.config })}
+              />
             </SortableItem>
           )
         })}
