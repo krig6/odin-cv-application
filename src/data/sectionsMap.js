@@ -6,9 +6,7 @@ import { EntrySection } from "../components/Shared/EntrySection";
 import { PersonalDetailsPreview } from "../components/PersonalDetailsPreview"
 import { SkillsPreview } from "../components/SkillsPreview"
 import { SummaryPreview } from "../components/SummaryPreview"
-import { WorkExperiencePreview } from "../components/WorkExperiencePreview"
-import { ProjectPreview } from "../components/ProjectPreview"
-import { EducationDetailsPreview } from "../components/EducationDetailsPreview"
+import { PreviewSection } from "../components/Shared/PreviewSection";
 
 import { Personal as PersonalPDF } from "../pdf/sections/Personal"
 import { Summary as SummaryPDF } from "../pdf/sections/Summary";
@@ -16,7 +14,6 @@ import { Skills as SkillsPDF } from "../pdf/sections/Skills"
 import { Projects as ProjectsPDF } from "../pdf/sections/Projects"
 import { Work as WorkPDF } from "../pdf/sections/Work";
 import { Education as EducationPDF } from "../pdf/sections/Education";
-
 
 export const SECTIONS_INPUTS = [
   { id: "personal", component: PersonalDetails },
@@ -80,9 +77,45 @@ export const SECTIONS_PREVIEWS = [
   { id: "personal", preview: PersonalDetailsPreview },
   { id: "summary", preview: SummaryPreview },
   { id: "skills", preview: SkillsPreview },
-  { id: "projects", preview: ProjectPreview },
-  { id: "work", preview: WorkExperiencePreview },
-  { id: "education", preview: EducationDetailsPreview },
+
+  {
+    id: "projects",
+    preview: PreviewSection,
+    prevConfig: {
+      title: "Projects",
+      storeKey: "projects",
+      primary: "name",
+      secondary: "techStack",
+      footerFields: [
+        { key: "live", label: "Live" },
+        { key: "repo", label: "Repo" }
+      ],
+    }
+  },
+
+  {
+    id: "work",
+    preview: PreviewSection,
+    prevConfig: {
+      title: "Professional Experience",
+      storeKey: "work",
+      primary: "company",
+      prefix: "position",
+      secondary: "period",
+    }
+  },
+
+  {
+    id: "education",
+    preview: PreviewSection,
+    prevConfig: {
+      title: "Education",
+      storeKey: "education",
+      primary: "university",
+      secondary: "period",
+      tertiary: "degree",
+    }
+  },
 ]
 
 export const SECTIONS_PDF = [
