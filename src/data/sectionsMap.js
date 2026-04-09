@@ -1,7 +1,7 @@
 import { PersonalDetails } from "../components/PersonalDetails";
 import { Summary } from "../components/Summary";
 import { Skills } from "../components/Skills";
-import { ConfigSection } from "../components/Shared/ConfigSection";
+import { EntrySection } from "../components/Shared/EntrySection";
 
 import { PersonalDetailsPreview } from "../components/PersonalDetailsPreview"
 import { SkillsPreview } from "../components/SkillsPreview"
@@ -24,7 +24,7 @@ export const SECTIONS_INPUTS = [
   { id: "skills", component: Skills },
   {
     id: "projects",
-    component: ConfigSection,
+    component: EntrySection,
     config: {
       title: "Projects",
       storeKey: "projects",
@@ -42,7 +42,7 @@ export const SECTIONS_INPUTS = [
   },
   {
     id: "work",
-    component: ConfigSection,
+    component: EntrySection,
     config: {
       title: "Professional Experience",
       storeKey: "work",
@@ -59,7 +59,7 @@ export const SECTIONS_INPUTS = [
   },
   {
     id: "education",
-    component: ConfigSection,
+    component: EntrySection,
     config: {
       title: "Education",
       storeKey: "education",

@@ -1,10 +1,10 @@
 import { useCvStore } from "../../store/CvStore"
 import { CollapsibleSection } from "./CollapsibleSection"
 import { InputField } from "./InputField"
-import { SortableList } from "./SortableSections"
+import { SortableList } from "./SortableSection"
 import { AddButton } from "./Buttons"
 
-export const ConfigSection = ({ dragHandleProps, config }) => {
+export const EntrySection = ({ dragHandleProps, config }) => {
   const items = useCvStore(state => state[config.storeKey])
   const addItem = useCvStore(state => state.addItem)
   const setItem = useCvStore(state => state.setItem)
