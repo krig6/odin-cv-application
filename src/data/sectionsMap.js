@@ -36,7 +36,7 @@ export const SECTIONS_INPUTS = [
       fields: [
         { key: "techStack", label: "Tech Stack" },
         { key: "live", label: "Live" },
-        { key: "Repo", label: "Repo" },
+        { key: "repo", label: "Repo" },
       ]
     }
   },
