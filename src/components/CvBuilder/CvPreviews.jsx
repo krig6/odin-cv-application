@@ -7,7 +7,10 @@ export const CvPreviews = () =>
       SECTIONS_PREVIEWS.map(section => {
         const PreviewComponent = section.preview
 
-        return < PreviewComponent key={section.id} />
+        return <PreviewComponent
+          key={section.id}
+          {...(section.prevConfig && { config: section.prevConfig })}
+        />
       })
     }
   </section>
