@@ -11,9 +11,7 @@ import { PreviewSection } from "../components/Shared/PreviewSection";
 import { Personal as PersonalPDF } from "../pdf/sections/Personal"
 import { Summary as SummaryPDF } from "../pdf/sections/Summary";
 import { Skills as SkillsPDF } from "../pdf/sections/Skills"
-import { Projects as ProjectsPDF } from "../pdf/sections/Projects"
-import { Work as WorkPDF } from "../pdf/sections/Work";
-import { Education as EducationPDF } from "../pdf/sections/Education";
+import { PdfSection } from "../components/Shared/PdfSection";
 
 export const SECTIONS_INPUTS = [
   { id: "personal", component: PersonalDetails },
@@ -122,8 +120,41 @@ export const SECTIONS_PDF = [
   { id: "personal", pdf: PersonalPDF },
   { id: "summary", pdf: SummaryPDF },
   { id: "skills", pdf: SkillsPDF },
-  { id: "projects", pdf: ProjectsPDF },
-  { id: "work", pdf: WorkPDF },
-  { id: "education", pdf: EducationPDF },
+  {
+    id: "projects",
+    pdf: PdfSection,
+    pdfConfig: {
+      title: "PROJECTS",
+      primary: "name",
+      storeKey: "projects",
+      secondary: "techStack",
+      footerFields: [
+        { key: "live", label: "Live" },
+        { key: "repo", label: "Repo" }
+      ],
+    }
+  },
+  {
+    id: "work",
+    pdf: PdfSection,
+    pdfConfig: {
+      title: "Professional Experience",
+      storeKey: "work",
+      primary: "company",
+      prefix: "position",
+      secondary: "period",
+    }
+  },
+  {
+    id: "education",
+    pdf: PdfSection,
+    pdfConfig: {
+      title: "Education",
+      storeKey: "education",
+      primary: "university",
+      secondary: "period",
+      tertiary: "degree",
+    }
+  },
 ]
 
