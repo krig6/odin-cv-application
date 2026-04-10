@@ -1,24 +1,22 @@
 import { Document, Page } from "@react-pdf/renderer";
 import { pdfStyles } from "./pdfStyles.js"
 
-export const CvDocument = ({ personal, summary, skills, projects, work, education, sections }) => (
+export const CvDocument = ({ personal, summary, skills, sections }) => (
   <Document>
     <Page size="A4" style={pdfStyles.page}>
       {
         sections.map(section => {
-          const SectionComponent = section.pdf
+          const PdfComponent = section.pdf
 
-          if (!SectionComponent) return null
+          if (!PdfComponent) return null
 
           return (
-            <SectionComponent
+            <PdfComponent
               key={section.id}
               personal={personal}
               summary={summary}
               skills={skills}
-              projects={projects}
-              work={work}
-              education={education}
+              {...(section.pdfConfig && { pdfConfig: section.pdfConfig })}
             />
           )
         })

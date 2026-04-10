@@ -9,9 +9,6 @@ export const CvPDF = () => {
   const personal = useCvStore(state => state.personal)
   const summary = useCvStore(state => state.summary)
   const skills = useCvStore(state => state.skills)
-  const projects = useCvStore(state => state.projects)
-  const work = useCvStore(state => state.work)
-  const education = useCvStore(state => state.education)
 
   const handleDownloadPDF = async () => {
     const blob = await pdf(
@@ -19,9 +16,6 @@ export const CvPDF = () => {
         personal={personal}
         summary={summary}
         skills={skills}
-        projects={projects}
-        work={work}
-        education={education}
         sections={SECTIONS_PDF}
       />
     ).toBlob();
