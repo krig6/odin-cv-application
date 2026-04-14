@@ -4,27 +4,35 @@ import { pdfStyles } from "../pdfStyles";
 export const Skills = ({ skills }) => {
   return (
     <View>
-      <Text style={pdfStyles.sectionHeading}>SKILLS</Text>
+      {skills.length > 0 && (
+        <Text style={pdfStyles.sectionHeading}>
+          SKILLS
+        </Text>
+      )}
 
       {skills
-        .filter((skill) => skill.category && skill.category.trim() !== "")
-        .map((skill) => {
-          const skillEntries = skill.entries
-            ?.map((entry) => entry.name)
+        .filter(skill => skill.category && skill.category.trim() !== "")
+        .map(skill => {
+          const entries = skill.entries
+            ?.map(entry => entry.name)
             .filter(Boolean)
-            .join(", ")
+            .join(", ");
 
           return (
-            <View key={skill.id} style={{ ...pdfStyles.itemContainer, marginBottom: 2 }}>
-              <Text style={pdfStyles.bodyText}>
-                <Text style={pdfStyles.subHeading}>
-                  {skill.category}:
-                </Text>{" "}
-                {skillEntries}
-              </Text>
+            <View key={skill.id} style={pdfStyles.itemContainer}>
+
+              <View style={{ flexDirection: "row", width: "100%" }}>
+                <Text style={pdfStyles.bodyText}>
+                  <Text style={pdfStyles.subHeading}>
+                    {skill.category}:
+                  </Text>{" "}
+                  {entries}
+                </Text>
+              </View>
+
             </View>
-          )
+          );
         })}
     </View>
-  )
-}
+  );
+};
