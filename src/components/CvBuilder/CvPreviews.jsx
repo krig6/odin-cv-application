@@ -1,10 +1,8 @@
-import { SECTIONS } from "../../data/sectionsMap"
-
-export const CvPreviews = () =>
+export const CvPreviews = ({ sections }) =>
 (
   <section className="cv-builder__previews">
     {
-      SECTIONS.map(section => {
+      sections.map(section => {
         const PreviewComponent = section.previewComponent
 
         return <PreviewComponent
