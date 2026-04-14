@@ -67,4 +67,11 @@ export const pdfStyles = StyleSheet.create({
     color: "#1a0dab",
     textDecoration: "underline",
   },
+
+  sectionDivider: {
+    height: 1.5,
+    backgroundColor: "#000",
+    marginBottom: 2,
+    width: "100%",
+  }
 });

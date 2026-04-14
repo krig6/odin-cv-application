@@ -13,6 +13,10 @@ export const PdfSection = ({ config }) => {
         {config.title}
       </Text>
 
+      <View
+        style={pdfStyles.sectionDivider}
+      />
+
       {items
         .filter(item => item[config.primary] && item[config.primary].trim() !== "")
         .map(item => (

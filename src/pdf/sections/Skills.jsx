@@ -10,6 +10,10 @@ export const Skills = ({ skills }) => {
         </Text>
       )}
 
+      <View
+        style={pdfStyles.sectionDivider}
+      />
+
       {skills
         .filter(skill => skill.category && skill.category.trim() !== "")
         .map(skill => {

@@ -7,6 +7,9 @@ export const Summary = ({ summary }) => {
       {summary && (
         <View>
           <Text style={pdfStyles.sectionHeading}>SUMMARY</Text>
+          <View
+            style={pdfStyles.sectionDivider}
+          />
           <Text style={pdfStyles.bodyText}>
             {summary}
           </Text>
