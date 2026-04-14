@@ -2,43 +2,43 @@ import { View, Text, Link } from "@react-pdf/renderer";
 import { pdfStyles } from "../../pdf/pdfStyles";
 import { useCvStore } from "../../store/CvStore";
 
-export const PdfSection = ({ pdfConfig }) => {
-  const items = useCvStore(state => state[pdfConfig.storeKey]);
+export const PdfSection = ({ config }) => {
+  const items = useCvStore(state => state[config.storeKey]);
 
   return (
     <View>
 
       {items.length > 0 && (
         <Text style={pdfStyles.sectionHeading}>
-          {pdfConfig.title}
+          {config.title}
         </Text>
       )}
 
       {items
-        .filter(item => item[pdfConfig.primary] && item[pdfConfig.primary].trim() !== "")
+        .filter(item => item[config.primary] && item[config.primary].trim() !== "")
         .map(item => (
           <View key={item.id} style={pdfStyles.itemContainer}>
 
             <View style={{ flexDirection: "row", width: "100%" }}>
               <Text style={{ fontWeight: "bold" }}>
-                {pdfConfig.prefix && item[pdfConfig.prefix]}
-                {pdfConfig.prefix &&
-                  item[pdfConfig.prefix] &&
-                  item[pdfConfig.primary] &&
+                {config.prefix && item[config.prefix]}
+                {config.prefix &&
+                  item[config.prefix] &&
+                  item[config.primary] &&
                   ", "}
-                {item[pdfConfig.primary]}
+                {item[config.primary]}
               </Text>
 
-              {pdfConfig.secondary && (
+              {config.secondary && (
                 <Text style={{ marginLeft: "auto" }}>
-                  {item[pdfConfig.secondary]}
+                  {item[config.secondary]}
                 </Text>
               )}
             </View>
 
-            {pdfConfig.tertiary && (
+            {config.tertiary && (
               <Text>
-                {item[pdfConfig.tertiary]}
+                {item[config.tertiary]}
               </Text>
             )}
 
@@ -52,9 +52,9 @@ export const PdfSection = ({ pdfConfig }) => {
               </View>
             )}
 
-            {pdfConfig.footerFields && (
+            {config.footerFields && (
               <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-                {pdfConfig.footerFields.map(field => (
+                {config.footerFields.map(field => (
                   <Text key={field.key} style={{ marginRight: 6 }}>
                     {field.label}:{" "}
                     <Link src={field.key} style={pdfStyles.link}>

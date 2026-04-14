@@ -13,148 +13,80 @@ import { Summary as SummaryPDF } from "../pdf/sections/Summary";
 import { Skills as SkillsPDF } from "../pdf/sections/Skills"
 import { PdfSection } from "../components/Shared/PdfSection";
 
-export const SECTIONS_INPUTS = [
-  { id: "personal", component: PersonalDetails },
-  { id: "summary", component: Summary },
-  { id: "skills", component: Skills },
+export const SECTIONS = [
+  {
+    id: "personal",
+    entryComponent: PersonalDetails,
+    previewComponent: PersonalDetailsPreview,
+    pdfComponent: PersonalPDF,
+  },
+  {
+    id: "summary",
+    entryComponent: Summary,
+    previewComponent: SummaryPreview,
+    pdfComponent: SummaryPDF,
+  },
+  {
+    id: "skills",
+    entryComponent: Skills,
+    previewComponent: SkillsPreview,
+    pdfComponent: SkillsPDF,
+  },
   {
     id: "projects",
-    component: EntrySection,
+    entryComponent: EntrySection,
+    previewComponent: PreviewSection,
+    pdfComponent: PdfSection,
     config: {
       title: "Projects",
       storeKey: "projects",
+      primary: "name",
+      secondary: "techStack",
       className: "project__item",
-      mainField: {
-        key: "name",
-        fallback: "Project Entry"
-      },
+      fallback: "Project Entry",
       fields: [
         { key: "techStack", label: "Tech Stack" },
         { key: "live", label: "Live" },
         { key: "repo", label: "Repo" },
-      ]
-    }
+      ],
+    },
   },
   {
     id: "work",
-    component: EntrySection,
+    entryComponent: EntrySection,
+    previewComponent: PreviewSection,
+    pdfComponent: PdfSection,
     config: {
       title: "Professional Experience",
       storeKey: "work",
+      primary: "company",
+      secondary: "period",
+      prefix: "position",
       className: "work__item",
-      mainField: {
-        key: "company",
-        fallback: "Work Entry"
-      },
+      fallback: "Work Entry",
       fields: [
         { key: "position", label: "Position" },
         { key: "period", label: "Period" },
-      ]
-    }
+      ],
+    },
   },
   {
     id: "education",
-    component: EntrySection,
+    entryComponent: EntrySection,
+    previewComponent: PreviewSection,
+    pdfComponent: PdfSection,
     config: {
       title: "Education",
       storeKey: "education",
+      primary: "university",
+      secondary: "period",
+      tertiary: "degree",
       className: "education_item",
-      mainField: {
-        key: "university",
-        fallback: "Education Entry"
-      },
+      fallback: "Education Entry",
       fields: [
         { key: "degree", label: "Degree" },
         { key: "period", label: "Period" },
-      ]
-    }
-  },
-]
-
-export const SECTIONS_PREVIEWS = [
-  { id: "personal", preview: PersonalDetailsPreview },
-  { id: "summary", preview: SummaryPreview },
-  { id: "skills", preview: SkillsPreview },
-
-  {
-    id: "projects",
-    preview: PreviewSection,
-    prevConfig: {
-      title: "Projects",
-      storeKey: "projects",
-      primary: "name",
-      secondary: "techStack",
-      footerFields: [
-        { key: "live", label: "Live" },
-        { key: "repo", label: "Repo" }
       ],
-    }
+    },
   },
-
-  {
-    id: "work",
-    preview: PreviewSection,
-    prevConfig: {
-      title: "Professional Experience",
-      storeKey: "work",
-      primary: "company",
-      prefix: "position",
-      secondary: "period",
-    }
-  },
-
-  {
-    id: "education",
-    preview: PreviewSection,
-    prevConfig: {
-      title: "Education",
-      storeKey: "education",
-      primary: "university",
-      secondary: "period",
-      tertiary: "degree",
-    }
-  },
-]
-
-export const SECTIONS_PDF = [
-  { id: "personal", pdf: PersonalPDF },
-  { id: "summary", pdf: SummaryPDF },
-  { id: "skills", pdf: SkillsPDF },
-  {
-    id: "projects",
-    pdf: PdfSection,
-    pdfConfig: {
-      title: "PROJECTS",
-      primary: "name",
-      storeKey: "projects",
-      secondary: "techStack",
-      footerFields: [
-        { key: "live", label: "Live" },
-        { key: "repo", label: "Repo" }
-      ],
-    }
-  },
-  {
-    id: "work",
-    pdf: PdfSection,
-    pdfConfig: {
-      title: "Professional Experience",
-      storeKey: "work",
-      primary: "company",
-      prefix: "position",
-      secondary: "period",
-    }
-  },
-  {
-    id: "education",
-    pdf: PdfSection,
-    pdfConfig: {
-      title: "Education",
-      storeKey: "education",
-      primary: "university",
-      secondary: "period",
-      tertiary: "degree",
-    }
-  },
-]
-
+];

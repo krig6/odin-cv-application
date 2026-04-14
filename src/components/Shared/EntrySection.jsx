@@ -21,15 +21,14 @@ export const EntrySection = ({ dragHandleProps, config }) => {
         <SortableList
           items={items}
           onReorder={(newArray) => reorderItems(config.storeKey, newArray)}
-          update={(itemId, val) => setItem(config.storeKey, itemId, { [config.mainField.key]: val })}
+          update={(itemId, val) => setItem(config.storeKey, itemId, { [config.primary]: val })}
           del={(itemId) => deleteItem(config.storeKey, itemId)}
           label={config.title}
           className="sortable-list__main"
         >
           {item => (
             <article key={item.id}>
-              <h3>{item[config.mainField
-                .key]} || {config.mainField.fallback}</h3>
+              <h3>{item[config.primary]} || {config.fallback}</h3>
               <div className="item-info">
                 {config.fields.map(field => (
                   <InputField

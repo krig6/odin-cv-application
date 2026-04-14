@@ -1,9 +1,9 @@
 import { useState } from "react"
-import { SECTIONS_INPUTS } from "../../data/sectionsMap"
+import { SECTIONS } from "../../data/sectionsMap"
 import { SortableSection } from "../Shared/SortableSection"
 
 export const CvSections = () => {
-  const [sections, setSections] = useState([...SECTIONS_INPUTS])
+  const [sections, setSections] = useState([...SECTIONS])
 
   return (
     <SortableSection

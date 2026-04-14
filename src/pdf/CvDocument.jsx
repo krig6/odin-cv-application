@@ -6,7 +6,7 @@ export const CvDocument = ({ personal, summary, skills, sections }) => (
     <Page size="A4" style={pdfStyles.page}>
       {
         sections.map(section => {
-          const PdfComponent = section.pdf
+          const PdfComponent = section.pdfComponent
 
           if (!PdfComponent) return null
 
@@ -16,7 +16,7 @@ export const CvDocument = ({ personal, summary, skills, sections }) => (
               personal={personal}
               summary={summary}
               skills={skills}
-              {...(section.pdfConfig && { pdfConfig: section.pdfConfig })}
+              {...(section.config && { config: section.config })}
             />
           )
         })

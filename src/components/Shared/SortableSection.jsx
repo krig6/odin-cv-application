@@ -35,7 +35,7 @@ export const SortableSection = ({ sections, onReorder }) => {
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={sections.map(section => section.id)} strategy={verticalListSortingStrategy}>
         {sections.map((section) => {
-          const Component = section.component
+          const Component = section.entryComponent
 
           return (
             <SortableItem key={section.id} id={section.id}>
