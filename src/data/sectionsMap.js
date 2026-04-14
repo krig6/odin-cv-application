@@ -38,7 +38,7 @@ export const SECTIONS = [
     previewComponent: PreviewSection,
     pdfComponent: PdfSection,
     config: {
-      title: "Projects",
+      title: "PROJECTS",
       storeKey: "projects",
       primary: "name",
       secondary: "techStack",
@@ -57,7 +57,7 @@ export const SECTIONS = [
     previewComponent: PreviewSection,
     pdfComponent: PdfSection,
     config: {
-      title: "Professional Experience",
+      title: "EXPERIENCE",
       storeKey: "work",
       primary: "company",
       secondary: "period",
@@ -76,7 +76,7 @@ export const SECTIONS = [
     previewComponent: PreviewSection,
     pdfComponent: PdfSection,
     config: {
-      title: "Education",
+      title: "EDUCATION",
       storeKey: "education",
       primary: "university",
       secondary: "period",

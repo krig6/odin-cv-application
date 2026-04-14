@@ -5,7 +5,7 @@ export const SkillsPreview = () => {
 
   return skills.length > 0
     ? (<section className="preview-section" >
-      <h2 className="preview-section__title">Skills</h2>
+      <h2 className="preview-section__title">SKILLS</h2>
       {skills
         .filter(skill => (skill.category ?? "").toString().trim() !== "")
         .map(skill => (
