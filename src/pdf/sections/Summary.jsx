@@ -7,7 +7,7 @@ export const Summary = ({ summary }) => {
       {summary && (
         <View>
           <Text style={pdfStyles.sectionHeading}>SUMMARY</Text>
-          <Text style={{ ...pdfStyles.bodyText, marginBottom: 8 }}>
+          <Text style={pdfStyles.bodyText}>
             {summary}
           </Text>
         </View>

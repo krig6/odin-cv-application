@@ -5,7 +5,7 @@ Font.register({
   fonts: [
     { src: "../../public/font/EBGaramond-Bold.ttf", fontWeight: "bold" },
     { src: "../../public/font/EBGaramond-Regular.ttf", fontWeight: "normal" },
-  ]
+  ],
 });
 
 export const pdfStyles = StyleSheet.create({
@@ -20,14 +20,15 @@ export const pdfStyles = StyleSheet.create({
   name: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 12,
     textAlign: "center",
+    marginBottom: 12,
   },
 
   jobTarget: {
+    fontSize: 11,
     fontWeight: "bold",
     textAlign: "center",
-    marginVertical: 6,
+    marginBottom: 6,
   },
 
   sectionHeading: {
@@ -39,20 +40,17 @@ export const pdfStyles = StyleSheet.create({
   subHeading: {
     fontSize: 12,
     fontWeight: "bold",
-    marginBottom: 4,
   },
 
   bodyText: {
     fontSize: 11,
     lineHeight: 1.4,
-    marginBottom: 4,
   },
 
-  contactInfo: {
+  metaText: {
     fontSize: 10,
     lineHeight: 1.2,
-    textAlign: "center",
-    marginBottom: 4,
+    textAlign: "center"
   },
 
   itemContainer: {
@@ -68,6 +66,5 @@ export const pdfStyles = StyleSheet.create({
     fontSize: 11,
     color: "#1a0dab",
     textDecoration: "underline",
-    marginBottom: 4,
   },
 });

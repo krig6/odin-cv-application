@@ -14,26 +14,22 @@ export const Personal = ({ personal }) => {
     .join(" | ");
 
   return (
-    <View style={{ marginBottom: 6 }}>
+    <View style={pdfStyles.itemContainer}>
       <Text style={pdfStyles.name}>
         {`${personal.firstName || ""} ${personal.lastName || ""}`.trim()}
       </Text>
 
-      {
-        personal.jobTarget && (
-          <Text style={pdfStyles.jobTarget}>
-            {personal.jobTarget}
-          </Text>
-        )
-      }
+      {personal.jobTarget && (
+        <Text style={pdfStyles.jobTarget}>
+          {personal.jobTarget}
+        </Text>
+      )}
 
-      {
-        contactInfo && (
-          <Text style={pdfStyles.contactInfo}>
-            {contactInfo}
-          </Text>
-        )
-      }
-    </View >
+      {contactInfo && (
+        <Text style={pdfStyles.metaText}>
+          {contactInfo}
+        </Text>
+      )}
+    </View>
   );
 };

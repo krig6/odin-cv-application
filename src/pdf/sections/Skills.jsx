@@ -21,14 +21,12 @@ export const Skills = ({ skills }) => {
           return (
             <View key={skill.id} style={pdfStyles.itemContainer}>
 
-              <View style={{ flexDirection: "row", width: "100%" }}>
-                <Text style={pdfStyles.bodyText}>
-                  <Text style={pdfStyles.subHeading}>
-                    {skill.category}:
-                  </Text>{" "}
-                  {entries}
-                </Text>
-              </View>
+              <Text style={pdfStyles.bodyText}>
+                <Text style={pdfStyles.subHeading}>
+                  {skill.category}:
+                </Text>{" "}
+                {entries}
+              </Text>
 
             </View>
           );

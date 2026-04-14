@@ -5,39 +5,44 @@ import { useCvStore } from "../../store/CvStore";
 export const PdfSection = ({ config }) => {
   const items = useCvStore(state => state[config.storeKey]);
 
+  if (!items || items.length === 0) return null;
+
   return (
     <View>
-
-      {items.length > 0 && (
-        <Text style={pdfStyles.sectionHeading}>
-          {config.title}
-        </Text>
-      )}
+      <Text style={pdfStyles.sectionHeading}>
+        {config.title}
+      </Text>
 
       {items
         .filter(item => item[config.primary] && item[config.primary].trim() !== "")
         .map(item => (
           <View key={item.id} style={pdfStyles.itemContainer}>
 
-            <View style={{ flexDirection: "row", width: "100%" }}>
-              <Text style={{ fontWeight: "bold" }}>
-                {config.prefix && item[config.prefix]}
+            <View style={pdfStyles.rowBetween}>
+              <Text style={pdfStyles.bodyText}>
+                <Text style={pdfStyles.subHeading}>
+                  {config.prefix && item[config.prefix]}
+                </Text>
+
                 {config.prefix &&
                   item[config.prefix] &&
                   item[config.primary] &&
                   ", "}
-                {item[config.primary]}
+
+                <Text style={pdfStyles.subHeading}>
+                  {item[config.primary]}
+                </Text>
               </Text>
 
               {config.secondary && (
-                <Text style={{ marginLeft: "auto" }}>
+                <Text style={pdfStyles.metaText}>
                   {item[config.secondary]}
                 </Text>
               )}
             </View>
 
-            {config.tertiary && (
-              <Text>
+            {config.tertiary && item[config.tertiary] && (
+              <Text style={pdfStyles.bodyText}>
                 {item[config.tertiary]}
               </Text>
             )}
@@ -53,11 +58,11 @@ export const PdfSection = ({ config }) => {
             )}
 
             {config.footerFields && (
-              <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+              <View style={pdfStyles.rowBetween}>
                 {config.footerFields.map(field => (
-                  <Text key={field.key} style={{ marginRight: 6 }}>
+                  <Text key={field.key} style={pdfStyles.metaText}>
                     {field.label}:{" "}
-                    <Link src={field.key} style={pdfStyles.link}>
+                    <Link src={item[field.key]} style={pdfStyles.link}>
                       {item[field.key]}
                     </Link>
                   </Text>
