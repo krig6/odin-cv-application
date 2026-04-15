@@ -5,6 +5,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { TrashAlt, Apps } from "@boxicons/react";
 import { IconButton } from "./Buttons";
+import { InputField } from "./InputField";
 
 export const SortableItem = ({ id, children, as: Component = 'div' }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -93,25 +94,21 @@ export const SortableList = ({ items, onReorder, update, del, label, className, 
   );
 };
 
-const ItemField = ({ itemId, itemName, update, del, label, className, children, dragHandleProps }) => {
+const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
   return (
     <div className={`${className} sortable-item-field`}>
       <div className="sortable-item-field__header">
 
         <IconButton {...dragHandleProps} icon={<Apps />} />
 
-        <div>
-          <label className="input__label" htmlFor={`sortable-item-${itemId}`}>
-            {label}
-          </label>
-          <input
-            id={`sortable-item-${itemId}`}
-            className="sortable-item-field__input"
-            value={itemName}
-            onChange={(e) => update(e.target.value)}
-            placeholder=""
-          />
-        </div>
+        <InputField
+          key={itemId}
+          id={`sortable-item-${itemId}`}
+          value={itemName}
+          label={label}
+          onChange={update}
+        />
+
         <IconButton icon={<TrashAlt />} onClick={del} />
       </div>
       {children}
