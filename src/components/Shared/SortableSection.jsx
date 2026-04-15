@@ -52,7 +52,7 @@ export const SortableSection = ({ sections, onReorder }) => {
   );
 };
 
-export const SortableList = ({ items, onReorder, update, del, label, children }) => {
+export const SortableList = ({ items, onReorder, update, del, label, children, isDescription = false }) => {
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -83,6 +83,7 @@ export const SortableList = ({ items, onReorder, update, del, label, children })
                 update={(value) => update(item.id, value)}
                 del={() => del(item.id)}
                 label={label}
+                isDescription={isDescription}
               >
                 {children ? children(item) : null}
               </SortableItemField>
@@ -94,10 +95,10 @@ export const SortableList = ({ items, onReorder, update, del, label, children })
   );
 };
 
-const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
+const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps, isDescription }) => {
   return (
     <div className={styles.main}>
-      <div className={styles.header}>
+      <div className={`${styles.header} ${isDescription ? styles.headerCompact : ""}`}>
         <IconButton {...dragHandleProps} icon={<Apps />} />
 
         <InputField
