@@ -20,7 +20,6 @@ export const Skills = ({ dragHandleProps }) => {
           update={(itemId, val) => setItem("skills", itemId, { category: val })}
           del={(itemId) => deleteItem("skills", itemId)}
           label="Category"
-          className="sortable-list__main"
         >
           {skill => (
             <SkillItems

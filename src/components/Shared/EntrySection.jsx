@@ -24,7 +24,6 @@ export const EntrySection = ({ dragHandleProps, config }) => {
           update={(itemId, val) => setItem(config.storeKey, itemId, { [config.primary]: val })}
           del={(itemId) => deleteItem(config.storeKey, itemId)}
           label={config.title}
-          className="sortable-list__main"
         >
           {item => (
             <article key={item.id}>

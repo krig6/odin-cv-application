@@ -6,6 +6,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { TrashAlt, Apps } from "@boxicons/react";
 import { IconButton } from "./Buttons";
 import { InputField } from "./InputField";
+import styles from "./SortableItemField.module.css"
 
 export const SortableItem = ({ id, children, as: Component = 'div' }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -51,7 +52,7 @@ export const SortableSection = ({ sections, onReorder }) => {
   );
 };
 
-export const SortableList = ({ items, onReorder, update, del, label, className, children }) => {
+export const SortableList = ({ items, onReorder, update, del, label, children }) => {
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -73,19 +74,18 @@ export const SortableList = ({ items, onReorder, update, del, label, className, 
   return (
     <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
-        <ul className="sortable-items">
+        <ul className={styles.list}>
           {items.map(item => (
             <SortableItem key={item.id} as="li" id={item.id}>
-              <ItemField
+              <SortableItemField
                 itemId={item.id}
                 itemName={getItemName(item)}
                 update={(value) => update(item.id, value)}
                 del={() => del(item.id)}
                 label={label}
-                className={className}
               >
                 {children ? children(item) : null}
-              </ItemField>
+              </SortableItemField>
             </SortableItem>
           ))}
         </ul>
@@ -96,9 +96,8 @@ export const SortableList = ({ items, onReorder, update, del, label, className, 
 
 const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps }) => {
   return (
-    <div className={`${className} sortable-item-field`}>
-      <div className="sortable-item-field__header">
-
+    <div className={styles.main}>
+      <div className={styles.header}>
         <IconButton {...dragHandleProps} icon={<Apps />} />
 
         <InputField
