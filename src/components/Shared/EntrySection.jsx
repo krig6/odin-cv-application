@@ -23,11 +23,11 @@ export const EntrySection = ({ dragHandleProps, config }) => {
           onReorder={(newArray) => reorderItems(config.storeKey, newArray)}
           update={(itemId, val) => setItem(config.storeKey, itemId, { [config.primary]: val })}
           del={(itemId) => deleteItem(config.storeKey, itemId)}
-          label={config.title}
+          label={config.label}
         >
           {item => (
             <article key={item.id}>
-              <h3>{item[config.primary]} || {config.fallback}</h3>
+              <h3>{item[config.primary]?.trim() || config.fallback}</h3>
               <div className="item-info">
                 {config.fields.map(field => (
                   <InputField

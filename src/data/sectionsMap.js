@@ -44,6 +44,7 @@ export const SECTIONS = [
       secondary: "techStack",
       className: "project__item",
       fallback: "Project Entry",
+      label: "Name",
       fields: [
         { key: "techStack", label: "Tech Stack" },
         { key: "live", label: "Live" },
@@ -64,6 +65,7 @@ export const SECTIONS = [
       prefix: "position",
       className: "work__item",
       fallback: "Work Entry",
+      label: "Company",
       fields: [
         { key: "position", label: "Position" },
         { key: "period", label: "Period" },
@@ -83,6 +85,7 @@ export const SECTIONS = [
       tertiary: "degree",
       className: "education_item",
       fallback: "Education Entry",
+      label: "University",
       fields: [
         { key: "degree", label: "Degree" },
         { key: "period", label: "Period" },
