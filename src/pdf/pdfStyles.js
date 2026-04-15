@@ -8,6 +8,8 @@ Font.register({
   ],
 });
 
+Font.registerHyphenationCallback((word) => [word])
+
 export const pdfStyles = StyleSheet.create({
   page: {
     padding: 36,
@@ -45,6 +47,7 @@ export const pdfStyles = StyleSheet.create({
   bodyText: {
     fontSize: 11,
     lineHeight: 1.4,
+
   },
 
   metaText: {
