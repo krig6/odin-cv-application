@@ -1,9 +1,14 @@
+import styles from "./InputField.module.css"
+
 export const InputField = ({ id, value, label, onChange }) => {
   return (
-    <div>
-      <label htmlFor={id} className="input__label">{label}</label>
+    <div className={styles.wrapper}>
+      <label htmlFor={id} className={styles.label}>
+        {label}
+      </label>
       <input
         id={id}
+        className={styles.input}
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
