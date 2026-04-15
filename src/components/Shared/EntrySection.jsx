@@ -3,6 +3,7 @@ import { CollapsibleSection } from "./CollapsibleSection"
 import { InputField } from "./InputField"
 import { SortableList } from "./SortableSection"
 import { AddButton } from "./Buttons"
+import styles from "./EntrySection.module.css"
 
 export const EntrySection = ({ dragHandleProps, config }) => {
   const items = useCvStore(state => state[config.storeKey])
@@ -16,7 +17,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
   const addDescription = useCvStore(state => state.addDescription)
 
   return (
-    <section className={config.storeKey}>
+    <section>
       <CollapsibleSection title={config.title} dragHandleProps={dragHandleProps}>
         <SortableList
           items={items}
@@ -26,9 +27,9 @@ export const EntrySection = ({ dragHandleProps, config }) => {
           label={config.label}
         >
           {item => (
-            <article key={item.id}>
-              <h3>{item[config.primary]?.trim() || config.fallback}</h3>
-              <div className="item-info">
+            <article key={item.id} className={styles.article}>
+              <h3 className={styles.header}>{item[config.primary]?.trim() || config.fallback}</h3>
+              <div className={styles.info}>
                 {config.fields.map(field => (
                   <InputField
                     key={`${field.key}-${item.id}`}
