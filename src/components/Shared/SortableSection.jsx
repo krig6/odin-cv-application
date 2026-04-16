@@ -7,6 +7,7 @@ import { TrashAlt, Apps } from "@boxicons/react";
 import { IconButton } from "./Buttons";
 import { InputField } from "./InputField";
 import styles from "./SortableItemField.module.css"
+import { KeyboardSensor, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 export const SortableItem = ({ id, children, as: Component = 'div' }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });
@@ -24,6 +25,12 @@ export const SortableItem = ({ id, children, as: Component = 'div' }) => {
 };
 
 export const SortableSection = ({ sections, onReorder }) => {
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor),
+  );
+
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -34,7 +41,7 @@ export const SortableSection = ({ sections, onReorder }) => {
   };
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={sections.map(section => section.id)} strategy={verticalListSortingStrategy}>
         {sections.map((section) => {
           const Component = section.entryComponent
@@ -53,6 +60,12 @@ export const SortableSection = ({ sections, onReorder }) => {
 };
 
 export const SortableList = ({ items, onReorder, update, del, label, children, isDescription = false }) => {
+  const sensors = useSensors(
+    useSensor(MouseSensor),
+    useSensor(TouchSensor),
+    useSensor(KeyboardSensor),
+  );
+
   const handleDragEnd = ({ active, over }) => {
     if (!over || active.id === over.id) return;
 
@@ -72,7 +85,7 @@ export const SortableList = ({ items, onReorder, update, del, label, children, i
   }
 
   return (
-    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={items.map(i => i.id)} strategy={verticalListSortingStrategy}>
         <ul className={styles.list}>
           {items.map(item => (
