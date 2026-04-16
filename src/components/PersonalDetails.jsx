@@ -1,7 +1,8 @@
 import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
+import { InputField } from "./Shared/InputField";
 
-const personFieldsConfig = [
+const personalFieldsConfig = [
   { name: "jobTarget", id: "job-target", label: "Job Target", type: "text", placeholder: "The role you want" },
   { name: "firstName", id: "first-name", label: "First Name", type: "text", autoComplete: "given-name" },
   { name: "lastName", id: "last-name", label: "Last Name", type: "text", autoComplete: "family-name" },
@@ -19,33 +20,28 @@ export const PersonalDetails = ({ dragHandleProps }) => (
   <section className="personal-details">
     <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
       <div className="personal-details__fields">
-        <PersonInputs />
+        <PersonalFields />
       </div>
     </CollapsibleSection>
   </section>
 );
 
-const PersonInputs = () => {
+const PersonalFields = () => {
   const personal = useCvStore(state => state.personal);
   const setPersonal = useCvStore(state => state.setPersonal);
 
-  return personFieldsConfig.map(field => (
-    <div className="personal-details__field" key={field.id}>
-      <label className="input__label" htmlFor={field.id}>
-        {field.label}
-      </label>
-      <input
-        id={field.id}
-        name={field.name}
-        type={field.type}
-        className="personal-details__input"
-        value={personal[field.name] ?? ""}
-        {...(field.placeholder && { placeholder: field.placeholder })}
-        {...(field.autoComplete && { autoComplete: field.autoComplete })}
-        {...(field.inputMode && { inputMode: field.inputMode })}
-        {...(field.pattern && { pattern: field.pattern })}
-        onChange={(e) => setPersonal({ [field.name]: e.target.value })}
-      />
-    </div>
+  return personalFieldsConfig.map(field => (
+    <InputField
+      key={field.id}
+      id={field.id}
+      label={field.label}
+      type={field.type}
+      onChange={(value) => setPersonal({ [field.name]: value })}
+      value={personal[field.name] ?? ""}
+      {...(field.placeholder && { placeholder: field.placeholder })}
+      {...(field.autoComplete && { autoComplete: field.autoComplete })}
+      {...(field.inputMode && { inputMode: field.inputMode })}
+      {...(field.pattern && { pattern: field.pattern })}
+    />
   ));
 };
