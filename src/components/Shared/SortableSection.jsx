@@ -110,7 +110,7 @@ export const SortableList = ({ items, onReorder, update, del, label, children, i
 
 const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps, isDescription }) => {
   return (
-    <div className={styles.main}>
+    <div className={`${styles.main} ${isDescription ? styles.mainNoShadow : ""}`}>
       <div className={`${styles.header} ${isDescription ? styles.headerCompact : ""}`}>
         <IconButton {...dragHandleProps} icon={<Apps />} />
 
