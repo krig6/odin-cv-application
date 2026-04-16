@@ -17,7 +17,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
   const addDescription = useCvStore(state => state.addDescription)
 
   return (
-    <section>
+    <section className={styles.wrapper}>
       <CollapsibleSection title={config.title} dragHandleProps={dragHandleProps}>
         <SortableList
           items={items}
@@ -62,6 +62,6 @@ export const EntrySection = ({ dragHandleProps, config }) => {
           {config.title}
         </AddButton>
       </CollapsibleSection>
-    </section>
+    </section >
   )
 }
