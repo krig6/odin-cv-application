@@ -48,7 +48,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
                 update={(descId, value) => setDescription(config.storeKey, item.id, descId, value)}
                 del={(descId) => deleteDescription(config.storeKey, item.id, descId)}
                 label="Description"
-                isDescription
+                isMinimal
               />
 
               <AddButton onClick={() => addDescription(config.storeKey, item.id)}>

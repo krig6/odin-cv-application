@@ -59,7 +59,7 @@ export const SortableSection = ({ sections, onReorder }) => {
   );
 };
 
-export const SortableList = ({ items, onReorder, update, del, label, children, isDescription = false }) => {
+export const SortableList = ({ items, onReorder, update, del, label, children, isMinimal = false }) => {
   const sensors = useSensors(
     useSensor(MouseSensor),
     useSensor(TouchSensor),
@@ -96,7 +96,7 @@ export const SortableList = ({ items, onReorder, update, del, label, children, i
                 update={(value) => update(item.id, value)}
                 del={() => del(item.id)}
                 label={label}
-                isDescription={isDescription}
+                isMinimal={isMinimal}
               >
                 {children ? children(item) : null}
               </SortableItemField>
@@ -108,10 +108,10 @@ export const SortableList = ({ items, onReorder, update, del, label, children, i
   );
 };
 
-const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps, isDescription }) => {
+const SortableItemField = ({ itemId, itemName, update, del, label, children, dragHandleProps, isMinimal }) => {
   return (
-    <div className={`${styles.main} ${isDescription ? styles.mainNoShadow : ""}`}>
-      <div className={`${styles.header} ${isDescription ? styles.headerCompact : ""}`}>
+    <div className={`${styles.main} ${isMinimal ? styles.mainMinimal : ""}`}>
+      <div className={`${styles.header} ${isMinimal ? styles.headerMinimal : ""}`}>
         <IconButton {...dragHandleProps} icon={<Apps />} />
 
         <InputField

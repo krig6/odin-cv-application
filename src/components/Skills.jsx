@@ -56,7 +56,7 @@ const SkillItems = ({ skill }) => {
         update={(itemId, value) => setSkill(skill.id, itemId, value)}
         del={(itemId) => deleteSkill(skill.id, itemId)}
         label={category}
-        isDescription
+        isMinimal
       />
 
       <AddButton onClick={() => addSkill(skill.id)}>
