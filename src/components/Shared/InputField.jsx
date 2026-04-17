@@ -4,7 +4,6 @@ export const InputField = ({ id, value, label, onChange, placeholder, autoComple
 
   const commonProps = {
     id,
-    className: styles.input,
     value,
     onChange: (e) => onChange(e.target.value),
     placeholder
@@ -19,6 +18,7 @@ export const InputField = ({ id, value, label, onChange, placeholder, autoComple
       {type === "textarea" ? (
         <textarea
           {...commonProps}
+          className={styles.textarea}
           rows={rows}
         />
       ) :
@@ -27,6 +27,7 @@ export const InputField = ({ id, value, label, onChange, placeholder, autoComple
           autoComplete={autoComplete}
           inputMode={inputMode}
           pattern={pattern}
+          className={styles.input}
         />
       }
     </div>
