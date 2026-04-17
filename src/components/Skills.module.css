@@ -1,0 +1,22 @@
+.wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.header {
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.article {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
