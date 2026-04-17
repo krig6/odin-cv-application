@@ -1,6 +1,7 @@
 import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
 import { InputField } from "./Shared/InputField";
+import styles from "./PersonalDetails.module.css"
 
 const personalFieldsConfig = [
   { name: "jobTarget", id: "job-target", label: "Job Target", type: "text", placeholder: "The role you want" },
@@ -17,9 +18,9 @@ const personalFieldsConfig = [
 ];
 
 export const PersonalDetails = ({ dragHandleProps }) => (
-  <section className="personal-details">
+  <section className={styles.container}>
     <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
-      <div className="personal-details__fields">
+      <div className={styles.wrapper}>
         <PersonalFields />
       </div>
     </CollapsibleSection>
@@ -35,6 +36,7 @@ const PersonalFields = () => {
       key={field.id}
       id={field.id}
       label={field.label}
+      className={styles[field.name]}
       type={field.type}
       onChange={(value) => setPersonal({ [field.name]: value })}
       value={personal[field.name] ?? ""}
