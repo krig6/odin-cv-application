@@ -1,13 +1,14 @@
 import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
 import { InputField } from "./Shared/InputField";
+import styles from "./Summary.module.css"
 
 export const Summary = ({ dragHandleProps }) => {
   const currentSummary = useCvStore(state => state.summary)
   const setSummary = useCvStore(state => state.setSummary);
 
   return (
-    <section className="summary">
+    <section className={styles.wrapper}>
       <CollapsibleSection title="Summary" dragHandleProps={dragHandleProps}>
         <div className="summary__fields">
           <InputField
