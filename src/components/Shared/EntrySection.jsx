@@ -28,7 +28,6 @@ export const EntrySection = ({ dragHandleProps, config }) => {
         >
           {item => (
             <article key={item.id} className={styles.article}>
-              <h3 className={styles.header}>{item[config.primary]?.trim() || config.fallback}</h3>
               <div className={styles.info}>
                 {config.fields.map(field => (
                   <InputField

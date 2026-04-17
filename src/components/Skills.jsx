@@ -48,8 +48,6 @@ const SkillItems = ({ skill }) => {
 
   return (
     <article className={styles.article}>
-      <h3 className={styles.header}>{skill.category || "Category"}</h3>
-
       <SortableList
         items={skill.entries}
         onReorder={(newSkill) => reorderSkills(skill.id, newSkill)}
