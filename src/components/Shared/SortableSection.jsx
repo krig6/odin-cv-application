@@ -112,7 +112,14 @@ const SortableItemField = ({ itemId, itemName, update, del, label, children, dra
   return (
     <div className={`${styles.main} ${isMinimal ? styles.mainMinimal : ""}`}>
       <div className={`${styles.header} ${isMinimal ? styles.headerMinimal : ""}`}>
-        <IconButton {...dragHandleProps} icon={<Apps />} />
+        <IconButton
+          {...dragHandleProps}
+          icon={
+            <Apps
+              size={`${isMinimal ? "xs" : "base"}`}
+            />
+          }
+        />
 
         <InputField
           key={itemId}
@@ -122,7 +129,14 @@ const SortableItemField = ({ itemId, itemName, update, del, label, children, dra
           onChange={update}
         />
 
-        <IconButton icon={<TrashAlt />} onClick={del} />
+        <IconButton
+          icon={
+            <TrashAlt
+              size={`${isMinimal ? "xs" : "base"}`}
+            />
+          }
+          onClick={del}
+        />
       </div>
       {children}
     </div>
