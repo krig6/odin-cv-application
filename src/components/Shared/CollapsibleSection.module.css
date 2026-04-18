@@ -16,11 +16,29 @@
   font-size: 0.875rem;
   justify-content: space-between;
   padding: 1rem 0.5rem;
-  transition: all 0.2s ease;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.28s ease,
+    opacity 0.2s ease;
+}
+
+.chevron {
+  transition: transform 0.25s ease;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.contentOpen {
+  max-height: 1000px;
+  opacity: 1;
 }

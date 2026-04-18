@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ChevronUp, ChevronDown } from "@boxicons/react";
+import { ChevronDown } from "@boxicons/react";
 import { Apps } from "@boxicons/react";
 import { IconButton } from "./Buttons";
 import styles from "./CollapsibleSection.module.css"
@@ -20,19 +20,18 @@ export const CollapsibleSection = ({ title, children, defaultOpen = false, dragH
         <h2 className={styles.title}>{title}</h2>
 
         <IconButton
-          icon={isOpen ? <ChevronUp /> : <ChevronDown />}
-          onClick={() => setIsOpen(prev => !prev)
+          icon={
+            <ChevronDown
+              className={`${styles.chevron} ${isOpen ? styles.chevronOpen : ""}`}
+            />
           }
+          onClick={() => setIsOpen(prev => !prev)}
         />
       </header>
 
-      {
-        isOpen && (
-          <div className={styles.content}>
-            {children}
-          </div>
-        )
-      }
+      <div className={`${styles.content} ${isOpen ? styles.contentOpen : ""}`}>
+        {children}
+      </div>
     </section >
   );
 };
