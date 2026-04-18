@@ -8,7 +8,7 @@ export const CollapsibleSection = ({ title, children, defaultOpen = false, dragH
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <section>
+    <section className={styles.section}>
       <header
         className={`${styles.header} ${isOpen ? styles.open : ""}`}>
         {dragHandleProps && (

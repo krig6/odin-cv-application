@@ -18,13 +18,11 @@ const personalFieldsConfig = [
 ];
 
 export const PersonalDetails = ({ dragHandleProps }) => (
-  <section className={styles.container}>
-    <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
-      <div className={styles.wrapper}>
-        <PersonalFields />
-      </div>
-    </CollapsibleSection>
-  </section>
+  <CollapsibleSection title="Personal Details" dragHandleProps={dragHandleProps}>
+    <div className={styles.wrapper}>
+      <PersonalFields />
+    </div>
+  </CollapsibleSection>
 );
 
 const PersonalFields = () => {

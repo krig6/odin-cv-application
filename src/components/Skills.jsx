@@ -13,29 +13,27 @@ export const Skills = ({ dragHandleProps }) => {
   const reorderItems = useCvStore(state => state.reorderItems);
 
   return (
-    <section className={styles.wrapper}>
-      <CollapsibleSection title="Skills" dragHandleProps={dragHandleProps}>
-        <SortableList
-          items={skills}
-          onReorder={(newArray) => reorderItems("skills", newArray)}
-          update={(itemId, val) => setItem("skills", itemId, { category: val })}
-          del={(itemId) => deleteItem("skills", itemId)}
-          label="Category"
-        >
-          {skill => (
-            <SkillItems
-              skill={skill}
-              setItem={setItem}
-              addItem={addItem}
-            />
-          )}
-        </SortableList >
+    <CollapsibleSection title="Skills" dragHandleProps={dragHandleProps}>
+      <SortableList
+        items={skills}
+        onReorder={(newArray) => reorderItems("skills", newArray)}
+        update={(itemId, val) => setItem("skills", itemId, { category: val })}
+        del={(itemId) => deleteItem("skills", itemId)}
+        label="Category"
+      >
+        {skill => (
+          <SkillItems
+            skill={skill}
+            setItem={setItem}
+            addItem={addItem}
+          />
+        )}
+      </SortableList >
 
-        <AddButton onClick={() => addItem("skills")}>
-          Category
-        </AddButton>
-      </CollapsibleSection>
-    </section>
+      <AddButton onClick={() => addItem("skills")}>
+        Category
+      </AddButton>
+    </CollapsibleSection>
   );
 };
 

@@ -17,50 +17,48 @@ export const EntrySection = ({ dragHandleProps, config }) => {
   const addDescription = useCvStore(state => state.addDescription)
 
   return (
-    <section className={styles.wrapper}>
-      <CollapsibleSection title={config.title} dragHandleProps={dragHandleProps}>
-        <SortableList
-          items={items}
-          onReorder={(newArray) => reorderItems(config.storeKey, newArray)}
-          update={(itemId, val) => setItem(config.storeKey, itemId, { [config.primary]: val })}
-          del={(itemId) => deleteItem(config.storeKey, itemId)}
-          label={config.label}
-        >
-          {item => (
-            <article key={item.id} className={styles.article}>
-              <div className={styles.info}>
-                {config.fields.map(field => (
-                  <InputField
-                    key={`${field.key}-${item.id}`}
-                    id={`${field.key}-${item.id}`}
-                    value={item[field.key] ?? ""}
-                    label={field.label}
-                    onChange={(value) =>
-                      setItem(config.storeKey, item.id, { [field.key]: value })
-                    }
-                  />
-                ))}
-              </div>
-              <SortableList
-                items={item.descriptions ?? []}
-                onReorder={(newDesc) => reorderDescriptions(config.storeKey, item.id, newDesc)}
-                update={(descId, value) => setDescription(config.storeKey, item.id, descId, value)}
-                del={(descId) => deleteDescription(config.storeKey, item.id, descId)}
-                label="Description"
-                isMinimal
-              />
+    <CollapsibleSection title={config.title} dragHandleProps={dragHandleProps}>
+      <SortableList
+        items={items}
+        onReorder={(newArray) => reorderItems(config.storeKey, newArray)}
+        update={(itemId, val) => setItem(config.storeKey, itemId, { [config.primary]: val })}
+        del={(itemId) => deleteItem(config.storeKey, itemId)}
+        label={config.label}
+      >
+        {item => (
+          <article key={item.id} className={styles.article}>
+            <div className={styles.info}>
+              {config.fields.map(field => (
+                <InputField
+                  key={`${field.key}-${item.id}`}
+                  id={`${field.key}-${item.id}`}
+                  value={item[field.key] ?? ""}
+                  label={field.label}
+                  onChange={(value) =>
+                    setItem(config.storeKey, item.id, { [field.key]: value })
+                  }
+                />
+              ))}
+            </div>
+            <SortableList
+              items={item.descriptions ?? []}
+              onReorder={(newDesc) => reorderDescriptions(config.storeKey, item.id, newDesc)}
+              update={(descId, value) => setDescription(config.storeKey, item.id, descId, value)}
+              del={(descId) => deleteDescription(config.storeKey, item.id, descId)}
+              label="Description"
+              isMinimal
+            />
 
-              <AddButton onClick={() => addDescription(config.storeKey, item.id)}>
-                Description
-              </AddButton>
-            </article>
-          )
-          }
-        </SortableList>
-        <AddButton onClick={() => addItem(config.storeKey)}>
-          {config.title}
-        </AddButton>
-      </CollapsibleSection>
-    </section >
+            <AddButton onClick={() => addDescription(config.storeKey, item.id)}>
+              Description
+            </AddButton>
+          </article>
+        )
+        }
+      </SortableList>
+      <AddButton onClick={() => addItem(config.storeKey)}>
+        {config.title}
+      </AddButton>
+    </CollapsibleSection>
   )
 }
