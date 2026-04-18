@@ -16,6 +16,9 @@ export const App = () => {
 
       <section className={styles.preview}>
         <CvPreviews sections={sections} />
+      </section>
+
+      <section className={styles.pdf}>
         <CvPDF sections={sections} />
       </section>
     </main>
