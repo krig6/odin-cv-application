@@ -1,5 +1,4 @@
-import { ArrowToBottom } from "@boxicons/react";
-import { IconButton } from "../components/Shared/Buttons"
+import { DownloadPdfButton } from "../components/Shared/Buttons"
 import { CvDocument } from "./CvDocument";
 import { useCvStore } from "../store/CvStore";
 import { pdf } from "@react-pdf/renderer";
@@ -28,6 +27,10 @@ export const CvPDF = ({ sections }) => {
   };
 
   return (
-    <IconButton icon={<ArrowToBottom />} onClick={handleDownloadPDF} />
+    <DownloadPdfButton
+      onClick={handleDownloadPDF}
+    >
+      PDF
+    </DownloadPdfButton>
   );
 }
