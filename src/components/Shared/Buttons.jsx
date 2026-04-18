@@ -1,4 +1,4 @@
-import { Plus } from "@boxicons/react";
+import { Plus, ArrowToBottom } from "@boxicons/react";
 import styles from "./Buttons.module.css"
 
 export const AddButton = ({ children, onClick }) => {
@@ -22,6 +22,19 @@ export const IconButton = ({ icon, onClick, ...dragHandleProps }) => {
       onClick={onClick}
       {...dragHandleProps}>
       {icon}
+    </button>
+  )
+}
+
+export const DownloadPdfButton = ({ onClick, children }) => {
+  return (
+    <button
+      className={`${styles.button} ${styles.download}`}
+      type="button"
+      onClick={onClick}
+    >
+      <ArrowToBottom />
+      {children}
     </button>
   )
 }
