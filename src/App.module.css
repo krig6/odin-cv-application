@@ -17,6 +17,39 @@
   display: none;
 }
 
-.pdf {
-  display: flex;
+@media (min-width: 1024px) {
+  .builder {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "inputs preview"
+      "inputs preview"
+      "inputs pdf";
+    column-gap: 1.5rem;
+    row-gap: 1rem;
+    align-items: start;
+  }
+
+  .inputs {
+    grid-area: inputs;
+    height: calc(100vh - 2rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #78909c #eaeaea;
+    padding: 0.5rem;
+  }
+
+  .preview {
+    grid-area: preview;
+    display: block;
+    height: calc(100vh - 7rem);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #78909c #eaeaea;
+    padding: 0.5rem;
+  }
+
+  .pdf {
+    grid-area: pdf;
+  }
 }
