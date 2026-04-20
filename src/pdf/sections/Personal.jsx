@@ -2,8 +2,17 @@ import { View, Text } from "@react-pdf/renderer";
 import { pdfStyles } from "../pdfStyles";
 
 export const Personal = ({ personal }) => {
+  const address = [
+    personal.cityState,
+    personal.postalCode,
+    personal.country,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+
   const contactInfo = [
-    personal.address,
+    address,
     personal.phone,
     personal.email,
     personal.linkedin,
