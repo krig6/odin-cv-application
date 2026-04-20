@@ -1,34 +1,49 @@
 import { useCvStore } from "../store/CvStore";
+import styles from "./PersonalDetailsPreview.module.css"
 
 export const PersonalDetailsPreview = () => {
   const personal = useCvStore(state => state.personal);
 
   if (!personal.firstName.trim()) return null;
 
-  const locationParts = [
+  const address = [
     personal.cityState,
     personal.postalCode,
-    personal.country
-  ].filter(Boolean).join(", ");
+    personal.country,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const contactInfo = [
+    address,
+    personal.phone,
+    personal.email,
+    personal.linkedin,
+    personal.github,
+    personal.portfolio,
+  ]
+    .filter(Boolean)
+    .join(" | ");
 
   return (
-    <section className="preview-section" role="contentinfo">
-      <h1>{personal.firstName} {personal.lastName}</h1>
+    <section className={styles.section}>
+      <header>
+        <span className={styles.name}>
+          {`${personal.firstName || ""} ${personal.lastName || ""}`.trim()}
+        </span>
+      </header>
 
-      {personal.jobTarget && <p>{personal.jobTarget}</p>}
+      {personal.jobTarget && (
+        <span className={styles.job}>
+          {personal.jobTarget}
+        </span>
+      )}
 
-      <div className="preview-section__contact">
-        {personal.phone && <div>{personal.phone}</div>}
-        {personal.email && <div>{personal.email}</div>}
-      </div>
-
-      <div className="preview-section__links">
-        {personal.linkedin && <div>{personal.linkedin}</div>}
-        {personal.github && <div>{personal.github}</div>}
-        {personal.portfolio && <div>{personal.portfolio}</div>}
-      </div>
-
-      {locationParts && <div>{locationParts}</div>}
+      {contactInfo && (
+        <span className={styles.contact}>
+          {contactInfo}
+        </span>
+      )}
     </section>
   );
 };
