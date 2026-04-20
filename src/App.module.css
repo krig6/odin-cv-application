@@ -1,3 +1,15 @@
+@font-face {
+  font-family: "EB Garamond";
+  src: url("/font/EBGaramond-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "EB Garamond";
+  src: url("/font/EBGaramond-Bold.ttf") format("truetype");
+  font-weight: 700;
+}
+
 .builder {
   display: flex;
   flex-direction: column;
@@ -15,6 +27,7 @@
 
 .preview {
   display: none;
+  font-family: "EB Garamond", serif;
 }
 
 @media (min-width: 1024px) {
