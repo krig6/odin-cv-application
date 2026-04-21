@@ -8,67 +8,60 @@ Font.register({
   ],
 });
 
-Font.registerHyphenationCallback((word) => [word])
+Font.registerHyphenationCallback((word) => [word]);
 
 export const pdfStyles = StyleSheet.create({
   page: {
-    padding: 36,
+    padding: 48,
     backgroundColor: "#FFFFFF",
     fontFamily: "EB Garamond",
     fontSize: 11,
-    lineHeight: 1.3,
+    lineHeight: 1.4,
+    gap: 12,
   },
 
-  name: {
+  personalSection: {
+    textAlign: "center",
+  },
+
+  personalName: {
     fontSize: 20,
     fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 12,
+    marginBottom: 15,
   },
 
   jobTarget: {
-    fontSize: 11,
     fontWeight: "bold",
-    textAlign: "center",
     marginBottom: 6,
   },
 
-  sectionHeading: {
+  contact: {
+    fontSize: 10,
+  },
+
+  sectionTitle: {
     fontSize: 14,
     fontWeight: "bold",
-    marginVertical: 8,
-  },
-
-  subHeading: {
-    fontSize: 12,
-    fontWeight: "bold",
-  },
-
-  bodyText: {
-    fontSize: 11,
-    lineHeight: 1.4,
-
-  },
-
-  metaText: {
-    fontSize: 10,
-    lineHeight: 1.2,
-    textAlign: "center"
-  },
-
-  itemContainer: {
     marginBottom: 6,
   },
 
-  rowBetween: {
+  boldText: {
+    fontWeight: "bold",
+  },
+
+  headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
   },
 
   link: {
-    fontSize: 11,
     color: "#1a0dab",
     textDecoration: "underline",
+  },
+
+  projectLinksRow: {
+    flexDirection: "row",
+    gap: 12,
   },
 
   sectionDivider: {
@@ -78,3 +71,4 @@ export const pdfStyles = StyleSheet.create({
     width: "100%",
   }
 });
+
