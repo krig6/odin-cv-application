@@ -10,7 +10,7 @@ export const PdfSection = ({ config }) => {
 
   return (
     <View>
-      <Text style={pdfStyles.sectionHeading}>
+      <Text style={pdfStyles.sectionTitle}>
         {config.title}
       </Text>
 
@@ -21,33 +21,33 @@ export const PdfSection = ({ config }) => {
       {items
         .filter(item => item[config.primary] && item[config.primary].trim() !== "")
         .map(item => (
-          <View key={item.id} style={pdfStyles.itemContainer}>
+          <View key={item.id}>
 
-            <View style={pdfStyles.rowBetween}>
-              <Text style={pdfStyles.bodyText}>
-                <Text style={pdfStyles.subHeading}>
+            <View style={pdfStyles.headerRow}>
+              <Text style={pdfStyles.boldText}>
+                <Text>
                   {config.prefix && item[config.prefix]}
                 </Text>
 
                 {config.prefix &&
                   item[config.prefix] &&
                   item[config.primary] &&
-                  ", "}
+                  " , "}
 
-                <Text style={pdfStyles.subHeading}>
+                <Text>
                   {item[config.primary]}
                 </Text>
               </Text>
 
               {config.secondary && (
-                <Text style={pdfStyles.metaText}>
+                <Text>
                   {item[config.secondary]}
                 </Text>
               )}
             </View>
 
             {config.tertiary && item[config.tertiary] && (
-              <Text style={pdfStyles.bodyText}>
+              <Text>
                 {item[config.tertiary]}
               </Text>
             )}
@@ -55,8 +55,8 @@ export const PdfSection = ({ config }) => {
             {item.descriptions?.length > 0 && (
               <View>
                 {item.descriptions.map(desc => (
-                  <Text key={desc.id} style={pdfStyles.bodyText}>
-                    • {desc.text}
+                  <Text key={desc.id}>
+                    •   {desc.text}
                   </Text>
                 ))}
               </View>
