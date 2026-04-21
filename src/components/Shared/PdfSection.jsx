@@ -4,6 +4,7 @@ import { useCvStore } from "../../store/CvStore";
 
 export const PdfSection = ({ config }) => {
   const items = useCvStore(state => state[config.storeKey]);
+  const isProjects = config.secondary === "techStack"
 
   if (!items || items.length === 0) return null;
 
@@ -61,16 +62,19 @@ export const PdfSection = ({ config }) => {
               </View>
             )}
 
-            {config.footerFields && (
-              <View style={pdfStyles.rowBetween}>
-                {config.footerFields.map(field => (
-                  <Text key={field.key} style={pdfStyles.metaText}>
-                    {field.label}:{" "}
-                    <Link src={item[field.key]} style={pdfStyles.link}>
-                      {item[field.key]}
-                    </Link>
-                  </Text>
-                ))}
+            {config.fields && isProjects && (
+              <View style={pdfStyles.projectLinksRow}>
+                {config.fields.map(field => {
+                  if (field.key === "techStack") return
+
+                  return (
+                    <Text key={field.key}>
+                      <Link src={item[field.key]} style={pdfStyles.link}>
+                        {field.label}
+                      </Link>
+                    </Text>
+                  )
+                })}
               </View>
             )}
 
