@@ -53,13 +53,22 @@
   }
 
   .preview {
-    grid-area: preview;
-    display: block;
     height: calc(100vh - 7rem);
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #78909c #eaeaea;
-    padding: 0.5rem;
+    grid-area: preview;
+    display: flex;
+    flex-direction: column;
+    width: 210mm;
+    background: white;
+    margin: 0 auto;
+    padding: 20mm;
+    padding: 64px;
+    font-size: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    border: 1px solid #ddd;
+    gap: 16px;
   }
 
   .pdf {
