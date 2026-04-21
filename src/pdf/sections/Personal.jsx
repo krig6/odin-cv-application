@@ -2,6 +2,13 @@ import { View, Text } from "@react-pdf/renderer";
 import { pdfStyles } from "../pdfStyles";
 
 export const Personal = ({ personal }) => {
+  const fullName = [
+    personal.firstName,
+    personal.lastName
+  ]
+    .filter(Boolean)
+    .join(" ")
+
   const address = [
     personal.cityState,
     personal.postalCode,
@@ -23,10 +30,13 @@ export const Personal = ({ personal }) => {
     .join(" | ");
 
   return (
-    <View style={pdfStyles.itemContainer}>
-      <Text style={pdfStyles.name}>
-        {`${personal.firstName || ""} ${personal.lastName || ""}`.trim()}
-      </Text>
+    <View style={pdfStyles.personalSection}>
+
+      {fullName && (
+        <Text style={pdfStyles.personalName}>
+          {fullName}
+        </Text>
+      )}
 
       {personal.jobTarget && (
         <Text style={pdfStyles.jobTarget}>
@@ -35,10 +45,11 @@ export const Personal = ({ personal }) => {
       )}
 
       {contactInfo && (
-        <Text style={pdfStyles.metaText}>
+        <Text style={pdfStyles.contact}>
           {contactInfo}
         </Text>
       )}
+
     </View>
   );
 };
