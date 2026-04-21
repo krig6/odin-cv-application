@@ -1,0 +1,60 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  word-break: keep-all;
+}
+
+.sectionTitle {
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.name {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.centerText {
+  text-align: center;
+}
+
+.job {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.contact {
+  font-size: 13px;
+}
+
+.category {
+  font-weight: bold;
+}
+
+.primary {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.spaceBetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.descriptionContainer {
+  padding-inline: 1.5rem;
+}
+
+.projectLinks {
+  display: flex;
+  gap: 1rem;
+  padding-inline: 1.5rem;
+}
+
+.sectionDivider {
+  height: 2px;
+  background-color: #000;
+  width: 100%;
+}

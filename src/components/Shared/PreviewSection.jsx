@@ -1,39 +1,52 @@
 import { useCvStore } from "../../store/CvStore"
+import styles from "../CvBuilder/CvPreviews.module.css"
 
 export const PreviewSection = ({ config }) => {
   const items = useCvStore(state => state[config.storeKey])
+  const isProjects = config.secondary === "techStack"
 
-  return items.length > 0
-    ? (<section className="preview-section">
-      <h2 className="preview-section__title">{config.title}</h2>
+  if (!items || items.length === 0) return null
+
+  return (
+    <section className={styles.section}>
+      <header className={styles.sectionTitle}>
+        <span>
+          {config.title}
+        </span>
+      </header>
+
+      <span className={styles.sectionDivider}></span>
 
       {items
-        .filter(item => (item[config.primary] ?? "").toString().trim() !== "")
+        .filter(item => item[config.primary] && item[config.primary].trim() !== "")
         .map(item => (
-          <div className="preview-section__item" key={item.id}>
+          <div
+            key={item.id}
+            className={styles.section}
+          >
 
-            <div className="preview-section__item-header">
-              <strong className="preview-section__item-title">
+            <div className={styles.spaceBetween}>
+              <span className={styles.primary}>
                 {config.prefix && item[config.prefix]}
                 {config.prefix && item[config.prefix] && item[config.primary] && ", "}
                 {item[config.primary]}
-              </strong>
+              </span>
 
               {config.secondary && (
-                <span className="preview-section__item-meta">
+                <span>
                   {item[config.secondary]}
                 </span>
               )}
             </div>
 
             {config.tertiary && (
-              <span className="preview-section__item-subtext">
+              <span>
                 {item[config.tertiary]}
               </span>
             )}
 
             {item.descriptions.length > 0 && (
-              <ul className="preview-section__item-list">
+              <ul className={styles.descriptionContainer}>
                 {item.descriptions.map(desc => (
                   <li
                     key={desc.id}
@@ -45,17 +58,27 @@ export const PreviewSection = ({ config }) => {
               </ul>
             )}
 
-            {config.footerFields && (
-              <div className="preview-section__item-footer">
-                {config.footerFields.map(field => (
-                  <span key={field.key}>
-                    {field.label}: {item[field.key]}
-                  </span>
-                ))}
+            {config.fields && isProjects && (
+              <div className={styles.projectLinks}>
+                {config.fields.map(field => {
+                  if (field.key === "techStack") return
+
+                  return (
+                    <div key={field.key}>
+                      <span>
+                        <a href={item[field.key]}>
+                          {field.label}
+                        </a>
+                      </span>
+                    </div>
+                  )
+                }
+                )}
               </div>
             )}
           </div>
-        ))}
-    </section>
-    ) : null
+        ))
+      }
+    </section >
+  )
 }

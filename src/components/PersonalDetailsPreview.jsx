@@ -1,5 +1,5 @@
 import { useCvStore } from "../store/CvStore";
-import styles from "./PersonalDetailsPreview.module.css"
+import styles from "./CvBuilder/CvPreviews.module.css"
 
 export const PersonalDetailsPreview = () => {
   const personal = useCvStore(state => state.personal);
@@ -26,7 +26,7 @@ export const PersonalDetailsPreview = () => {
     .join(" | ");
 
   return (
-    <section className={styles.section}>
+    <section className={`${styles.section} ${styles.centerText}`}>
       <header>
         <span className={styles.name}>
           {`${personal.firstName || ""} ${personal.lastName || ""}`.trim()}

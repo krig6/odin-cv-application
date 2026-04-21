@@ -1,31 +1,39 @@
 import { useCvStore } from "../store/CvStore"
+import styles from "./CvBuilder/CvPreviews.module.css"
 
 export const SkillsPreview = () => {
   const skills = useCvStore(state => state.skills)
 
-  return skills.length > 0
-    ? (<section className="preview-section" >
-      <h2 className="preview-section__title">SKILLS</h2>
+  if (skills.length === 0) return null
+
+  return (
+    <section className={styles.section}>
+      <header>
+        <span className={styles.sectionTitle}>
+          Skills
+        </span>
+      </header>
+
+      <span className={styles.sectionDivider}></span>
+
       {skills
-        .filter(skill => (skill.category ?? "").toString().trim() !== "")
-        .map(skill => (
-          <div className="preview-section__content" key={skill.id}>
-            <div className="preview-section__header">
-              <strong className="preview-section__name">{skill.category}</strong>
+        .filter(skill => skill.category && skill.category.trim() !== "")
+        .map(skill => {
+          const entries = skill.entries
+            ?.map(entry => entry.name)
+            .filter(Boolean)
+            .join(", ");
+
+          return (
+            <div key={skill.id}>
+              <div>
+                <span className={styles.category}>{skill.category}: </span>
+                <span>{entries}</span>
+              </div>
             </div>
-            {skill.entries.length > 0
-              ? (<ul>
-                {
-                  skill.entries.map(entry => (
-                    <li key={entry.id}>{entry.name}</li>
-                  ))
-                }
-              </ul>
-              ) : null
-            }
-          </div>
-        ))
+          );
+        })
       }
-    </section >)
-    : null
+    </section>
+  );
 }

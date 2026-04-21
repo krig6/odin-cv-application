@@ -1,14 +1,18 @@
 import { useCvStore } from "../store/CvStore"
+import styles from "./CvBuilder/CvPreviews.module.css"
 
 export const SummaryPreview = () => {
   const currentSummary = useCvStore(state => state.summary)
 
-  return currentSummary
-    ? (<section className="preview-section" >
-      <h2 className="preview-section__title">Summary</h2>
-      <p className="preview-section__content">
-        {currentSummary}
-      </p>
-    </section >)
-    : null
+  return (
+    currentSummary && (
+      <section className={styles.section}>
+        <header className={styles.sectionTitle}>
+          Summary
+        </header>
+        <span className={styles.sectionDivider}></span>
+        <p>{currentSummary}</p>
+      </section>
+    )
+  )
 }
