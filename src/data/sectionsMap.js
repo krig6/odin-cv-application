@@ -47,8 +47,8 @@ export const SECTIONS = [
       label: "Name",
       fields: [
         { key: "techStack", label: "Tech Stack" },
-        { key: "live", label: "Live" },
-        { key: "repo", label: "Repo" },
+        { key: "repo", label: "Source Code" },
+        { key: "live", label: "Live Demo" },
       ],
     },
   },
