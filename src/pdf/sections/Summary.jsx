@@ -6,11 +6,11 @@ export const Summary = ({ summary }) => {
     <View>
       {summary && (
         <View>
-          <Text style={pdfStyles.sectionHeading}>SUMMARY</Text>
+          <Text style={pdfStyles.sectionTitle}>Summary</Text>
           <View
             style={pdfStyles.sectionDivider}
           />
-          <Text style={pdfStyles.bodyText}>
+          <Text>
             {summary}
           </Text>
         </View>
