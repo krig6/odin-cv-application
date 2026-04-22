@@ -1,6 +1,6 @@
 import { CollapsibleSection } from "./Shared/CollapsibleSection";
 import { useCvStore } from "../store/CvStore";
-import { SortableList } from "./Shared/SortableSection";
+import { SortableEntry } from "./Shared/SortableSection";
 import { AddButton } from "./Shared/Buttons";
 import pluralize from "pluralize";
 import styles from "./Shared/EditorSection.module.css"
@@ -14,7 +14,7 @@ export const Skills = ({ dragHandleProps }) => {
 
   return (
     <CollapsibleSection title="Skills" dragHandleProps={dragHandleProps}>
-      <SortableList
+      <SortableEntry
         items={skills}
         onReorder={(newArray) => reorderItems("skills", newArray)}
         update={(itemId, val) => setItem("skills", itemId, { category: val })}
@@ -28,7 +28,7 @@ export const Skills = ({ dragHandleProps }) => {
             addItem={addItem}
           />
         )}
-      </SortableList >
+      </SortableEntry >
 
       <AddButton onClick={() => addItem("skills")}>
         Category
@@ -46,7 +46,7 @@ const SkillItems = ({ skill }) => {
 
   return (
     <article className={styles.article}>
-      <SortableList
+      <SortableEntry
         items={skill.entries}
         onReorder={(newSkill) => reorderSkills(skill.id, newSkill)}
         update={(itemId, value) => setSkill(skill.id, itemId, value)}

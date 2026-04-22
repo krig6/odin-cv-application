@@ -1,7 +1,7 @@
 import { useCvStore } from "../../store/CvStore"
 import { CollapsibleSection } from "./CollapsibleSection"
 import { InputField } from "./InputField"
-import { SortableList } from "./SortableSection"
+import { SortableEntry } from "./SortableSection"
 import { AddButton } from "./Buttons"
 import styles from "./EditorSection.module.css"
 
@@ -18,7 +18,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
 
   return (
     <CollapsibleSection title={config.title} dragHandleProps={dragHandleProps}>
-      <SortableList
+      <SortableEntry
         items={items}
         onReorder={(newArray) => reorderItems(config.storeKey, newArray)}
         update={(itemId, val) => setItem(config.storeKey, itemId, { [config.primary]: val })}
@@ -40,7 +40,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
                 />
               ))}
             </div>
-            <SortableList
+            <SortableEntry
               items={item.descriptions ?? []}
               onReorder={(newDesc) => reorderDescriptions(config.storeKey, item.id, newDesc)}
               update={(descId, value) => setDescription(config.storeKey, item.id, descId, value)}
@@ -55,7 +55,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
           </article>
         )
         }
-      </SortableList>
+      </SortableEntry>
       <AddButton onClick={() => addItem(config.storeKey)}>
         {config.title}
       </AddButton>
