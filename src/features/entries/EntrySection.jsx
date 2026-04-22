@@ -1,9 +1,9 @@
 import { useCvStore } from "../../store/cvStore"
-import { CollapsibleSection } from "./CollapsibleSection"
-import { InputField } from "./InputField"
-import { SortableEntry } from "./SortableSection"
-import { AddButton } from "./Buttons"
-import styles from "./EditorSection.module.css"
+import { CollapsibleSection } from "../../shared/ui/CollapsibleSection"
+import { InputField } from "../../shared/ui/InputField"
+import { SortableEntry } from "../../shared/dnd/SortableSection"
+import { AddButton } from "../../shared/ui/Buttons"
+import styles from "../../shared/ui/EditorSection.module.css"
 
 export const EntrySection = ({ dragHandleProps, config }) => {
   const items = useCvStore(state => state[config.storeKey])

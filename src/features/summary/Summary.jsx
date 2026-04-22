@@ -1,6 +1,6 @@
-import { CollapsibleSection } from "./Shared/CollapsibleSection";
-import { useCvStore } from "../store/cvStore";
-import { InputField } from "./Shared/InputField";
+import { useCvStore } from "../../store/cvStore";
+import { CollapsibleSection } from "../../shared/ui/CollapsibleSection";
+import { InputField } from "../../shared/ui/InputField";
 
 export const Summary = ({ dragHandleProps }) => {
   const currentSummary = useCvStore(state => state.summary)

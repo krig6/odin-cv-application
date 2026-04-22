@@ -1,5 +1,5 @@
-import { useCvStore } from "../store/cvStore";
-import styles from "./CvBuilder/CvPreviews.module.css"
+import { useCvStore } from "../../store/cvStore";
+import styles from "../../app/CvBuilder/CvPreviews.module.css"
 
 export const PersonalDetailsPreview = () => {
   const personal = useCvStore(state => state.personal);

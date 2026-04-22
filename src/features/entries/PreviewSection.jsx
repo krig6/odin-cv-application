@@ -1,5 +1,5 @@
 import { useCvStore } from "../../store/cvStore"
-import styles from "../CvBuilder/CvPreviews.module.css"
+import styles from "../../app/CvBuilder/CvPreviews.module.css"
 
 export const PreviewSection = ({ config }) => {
   const items = useCvStore(state => state[config.storeKey])

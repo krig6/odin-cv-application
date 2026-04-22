@@ -1,9 +1,9 @@
-import { CollapsibleSection } from "./Shared/CollapsibleSection";
-import { useCvStore } from "../store/cvStore";
-import { SortableEntry } from "./Shared/SortableSection";
-import { AddButton } from "./Shared/Buttons";
 import pluralize from "pluralize";
-import styles from "./Shared/EditorSection.module.css"
+import { useCvStore } from "../../store/cvStore";
+import { CollapsibleSection } from "../../shared/ui/CollapsibleSection";
+import { SortableEntry } from "../../shared/dnd/SortableSection";
+import { AddButton } from "../../shared/ui/Buttons";
+import styles from "../../shared/ui/EditorSection.module.css"
 
 export const Skills = ({ dragHandleProps }) => {
   const skills = useCvStore(state => state.skills)

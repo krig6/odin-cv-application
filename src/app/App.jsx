@@ -1,8 +1,8 @@
-import { CvSections } from "./components/CvBuilder/CvSections";
-import { CvPreviews } from "./components/CvBuilder/CvPreviews";
-import { CvPDF } from "./pdf/CvPDF";
-import { SECTIONS } from "./data/sectionsMap";
 import { useState } from "react";
+import { SECTIONS } from "../data/sectionsMap";
+import { CvSections } from "./CvBuilder/CvSections";
+import { CvPreviews } from "./CvBuilder/CvPreviews";
+import { CvPDF } from "../pdf/CvPDF";
 import styles from "./App.module.css"
 
 export const App = () => {

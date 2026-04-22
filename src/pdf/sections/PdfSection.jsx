@@ -1,6 +1,6 @@
 import { View, Text, Link } from "@react-pdf/renderer";
-import { pdfStyles } from "../../pdf/pdfStyles";
 import { useCvStore } from "../../store/cvStore";
+import { pdfStyles } from "../../pdf/pdfStyles";
 
 export const PdfSection = ({ config }) => {
   const items = useCvStore(state => state[config.storeKey]);

@@ -1,17 +1,18 @@
-import { PersonalDetails } from "../components/PersonalDetails";
-import { Summary } from "../components/Summary";
-import { Skills } from "../components/Skills";
-import { EntrySection } from "../components/Shared/EntrySection";
-
-import { PersonalDetailsPreview } from "../components/PersonalDetailsPreview"
-import { SkillsPreview } from "../components/SkillsPreview"
-import { SummaryPreview } from "../components/SummaryPreview"
-import { PreviewSection } from "../components/Shared/PreviewSection";
-
+import { PersonalDetails } from "../features/personal/PersonalDetails";
+import { PersonalDetailsPreview } from "../features/personal/PersonalDetailsPreview"
 import { Personal as PersonalPDF } from "../pdf/sections/Personal"
+
+import { Summary } from "../features/summary/Summary";
+import { SummaryPreview } from "../features/summary/SummaryPreview"
 import { Summary as SummaryPDF } from "../pdf/sections/Summary";
+
+import { Skills } from "../features/skills/Skills";
+import { SkillsPreview } from "../features/skills/SkillsPreview"
 import { Skills as SkillsPDF } from "../pdf/sections/Skills"
-import { PdfSection } from "../components/Shared/PdfSection";
+
+import { EntrySection } from "../features/entries/EntrySection";
+import { PreviewSection } from "../features/entries/PreviewSection";
+import { PdfSection } from "../pdf/sections/PdfSection";
 
 export const SECTIONS = [
   {

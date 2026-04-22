@@ -2,10 +2,10 @@ import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { TrashAlt, Apps } from "@boxicons/react";
-import { IconButton } from "./Buttons";
-import { InputField } from "./InputField";
-import styles from "./SortableEntryField.module.css"
+import { IconButton } from "../ui/Buttons";
+import { InputField } from "../ui/InputField";
 import { SortableProvider } from "./SortableDndProvider";
+import styles from "./SortableEntryField.module.css"
 
 export const SortableItem = ({ id, children, as: Component = 'div' }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id });

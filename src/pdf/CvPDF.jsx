@@ -1,7 +1,7 @@
-import { DownloadPdfButton } from "../components/Shared/Buttons"
-import { CvDocument } from "./CvDocument";
-import { useCvStore } from "../store/cvStore";
 import { pdf } from "@react-pdf/renderer";
+import { useCvStore } from "../store/cvStore";
+import { DownloadPdfButton } from "../shared/ui/Buttons"
+import { CvDocument } from "./CvDocument";
 
 export const CvPDF = ({ sections }) => {
   const personal = useCvStore(state => state.personal)
