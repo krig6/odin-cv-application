@@ -1,5 +1,5 @@
 import { CollapsibleSection } from "./Shared/CollapsibleSection";
-import { useCvStore } from "../store/CvStore";
+import { useCvStore } from "../store/cvStore";
 import { InputField } from "./Shared/InputField";
 
 export const Summary = ({ dragHandleProps }) => {

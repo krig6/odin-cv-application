@@ -1,4 +1,4 @@
-import { useCvStore } from "../../store/CvStore"
+import { useCvStore } from "../../store/cvStore"
 import { CollapsibleSection } from "./CollapsibleSection"
 import { InputField } from "./InputField"
 import { SortableEntry } from "./SortableSection"

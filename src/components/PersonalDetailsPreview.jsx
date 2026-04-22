@@ -1,4 +1,4 @@
-import { useCvStore } from "../store/CvStore";
+import { useCvStore } from "../store/cvStore";
 import styles from "./CvBuilder/CvPreviews.module.css"
 
 export const PersonalDetailsPreview = () => {

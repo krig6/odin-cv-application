@@ -17,7 +17,7 @@ const addComponents = {
 
 export const useCvStore = create((set) => ({
   // ========== PERSONAL INFO ==========
-  personal: { jobTarget: "SOFTWARE ENGINEER", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
+  personal: { jobTarget: "", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
   summary: "",
 
   // ========== SECTIONS ==========

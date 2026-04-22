@@ -1,5 +1,5 @@
 import { CollapsibleSection } from "./Shared/CollapsibleSection";
-import { useCvStore } from "../store/CvStore";
+import { useCvStore } from "../store/cvStore";
 import { SortableEntry } from "./Shared/SortableSection";
 import { AddButton } from "./Shared/Buttons";
 import pluralize from "pluralize";
