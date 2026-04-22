@@ -3,7 +3,7 @@ import { useCvStore } from "../store/CvStore";
 import { SortableList } from "./Shared/SortableSection";
 import { AddButton } from "./Shared/Buttons";
 import pluralize from "pluralize";
-import styles from "./Skills.module.css"
+import styles from "./Shared/EditorSection.module.css"
 
 export const Skills = ({ dragHandleProps }) => {
   const skills = useCvStore(state => state.skills)

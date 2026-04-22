@@ -3,7 +3,7 @@ import { CollapsibleSection } from "./CollapsibleSection"
 import { InputField } from "./InputField"
 import { SortableList } from "./SortableSection"
 import { AddButton } from "./Buttons"
-import styles from "./EntrySection.module.css"
+import styles from "./EditorSection.module.css"
 
 export const EntrySection = ({ dragHandleProps, config }) => {
   const items = useCvStore(state => state[config.storeKey])
@@ -27,7 +27,7 @@ export const EntrySection = ({ dragHandleProps, config }) => {
       >
         {item => (
           <article key={item.id} className={styles.article}>
-            <div className={styles.info}>
+            <div className={styles.fields}>
               {config.fields.map(field => (
                 <InputField
                   key={`${field.key}-${item.id}`}
