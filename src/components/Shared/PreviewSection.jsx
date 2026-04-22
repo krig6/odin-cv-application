@@ -46,7 +46,7 @@ export const PreviewSection = ({ config }) => {
             )}
 
             {item.descriptions.length > 0 && (
-              <ul className={styles.descriptionContainer}>
+              <ul>
                 {item.descriptions.map(desc => (
                   <li
                     key={desc.id}

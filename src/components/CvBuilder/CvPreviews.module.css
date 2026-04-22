@@ -43,10 +43,6 @@
   justify-content: space-between;
 }
 
-.descriptionContainer {
-  padding-inline: 1.5rem;
-}
-
 .projectLinks {
   display: flex;
   gap: 1rem;
