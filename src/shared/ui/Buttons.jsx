@@ -38,3 +38,16 @@ export const DownloadPdfButton = ({ onClick, children }) => {
     </button>
   )
 }
+
+export const ActionButton = ({ icon, children, onClick }) => {
+  return (
+    <button
+      className={`${styles.button} ${styles.action}`}
+      type="button"
+      onClick={onClick}
+    >
+      {icon}
+      {children}
+    </button>
+  )
+}
