@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { getInitialState } from "./cvInitialState";
+import { getSampleCv } from "./cvSampleData";
 
 const addComponents = {
   skills: {
@@ -16,15 +18,9 @@ const addComponents = {
 }
 
 export const useCvStore = create((set) => ({
-  // ========== PERSONAL INFO ==========
-  personal: { jobTarget: "", firstName: "", lastName: "", email: "", phone: "", linkedin: "", github: "", portfolio: "", postalCode: "", cityState: "", country: "" },
-  summary: "",
-
-  // ========== SECTIONS ==========
-  skills: [],
-  projects: [],
-  work: [],
-  education: [],
+  // Spread the default CV state as the initial Zustand store state.
+  // This defines the base structure for all CV data fields.
+  ...getInitialState(),
 
   // ========== ITEM CRUD ==========
   // Add a new item to a section (skills, projects, employments, educations)
@@ -146,4 +142,10 @@ export const useCvStore = create((set) => ({
       return { ...skill, entries: newSkillArray }
     })
   })),
+
+  // fills store with sample CV data
+  fillCv: () => set(getSampleCv()),
+
+  // resets CV to empty state
+  resetCv: () => set(getInitialState())
 }))
