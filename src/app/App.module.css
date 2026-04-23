@@ -30,14 +30,19 @@
   font-family: "EB Garamond", serif;
 }
 
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 @media (min-width: 1024px) {
   .builder {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas:
       "inputs preview"
-      "inputs preview"
-      "inputs pdf";
+      "inputs actions";
     column-gap: 1.5rem;
     row-gap: 1rem;
     align-items: start;
@@ -71,7 +76,8 @@
     gap: 16px;
   }
 
-  .pdf {
-    grid-area: pdf;
+  .actions {
+    grid-area: actions;
+    gap: 1rem;
   }
 }

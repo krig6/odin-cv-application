@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SECTIONS } from "../data/sectionsMap";
 import { CvSections } from "./CvBuilder/CvSections";
 import { CvPreviews } from "./CvBuilder/CvPreviews";
-import { CvPDF } from "../pdf/CvPDF";
+import { CvActionsPanel } from "./CvBuilder/CvActionsPanel";
 import styles from "./App.module.css"
 
 export const App = () => {
@@ -18,8 +18,8 @@ export const App = () => {
         <CvPreviews sections={sections} />
       </section>
 
-      <section className={styles.pdf}>
-        <CvPDF sections={sections} />
+      <section className={styles.actions}>
+        <CvActionsPanel sections={sections} />
       </section>
     </main>
   );
