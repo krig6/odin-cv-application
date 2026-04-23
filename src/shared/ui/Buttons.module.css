@@ -4,9 +4,10 @@
   border: none;
   border-radius: 0.5rem;
   color: #64748b;
+  cursor: pointer;
   display: inline-flex;
   font-family: inherit;
-  cursor: pointer;
+  max-width: 90px;
   transition: background-color 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.2s ease,
@@ -45,7 +46,8 @@
   padding: 0.6rem 1rem;
 }
 
-/**/
-/* .download { */
-/*   width: 100%; */
-/* } */
+@media (min-width: 1024px) {
+  .button {
+    min-width: 150px;
+  }
+}
