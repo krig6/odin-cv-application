@@ -7,7 +7,6 @@
   cursor: pointer;
   display: inline-flex;
   font-family: inherit;
-  max-width: 90px;
   transition: background-color 0.2s ease,
     box-shadow 0.2s ease,
     transform 0.2s ease,
@@ -15,13 +14,15 @@
 }
 
 .button:hover {
-  background-color: #eaf0ff;
+  background-color: #c7d2fe;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   color: #2563eb;
   transform: translateY(-1px);
 }
 
 .button:active {
+  background-color: #a5b4fc;
+  color: #1e1b4b;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
   transform: translateY(0px);
 }
@@ -46,8 +47,15 @@
   padding: 0.6rem 1rem;
 }
 
+.download,
+.action {
+  max-width: 90px;
+}
+
 @media (min-width: 1024px) {
-  .button {
+
+  .action,
+  .download {
     min-width: 150px;
   }
 }
