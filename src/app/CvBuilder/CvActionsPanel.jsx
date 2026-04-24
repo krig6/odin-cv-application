@@ -1,5 +1,5 @@
 import { useCvStore } from "../../store/cvStore";
-import { CvPDF } from "../../pdf/CvPDF";
+import { CvPdfDownload } from "../../pdf/CvPDF";
 import { ActionButton } from "../../shared/ui/Buttons";
 import { FileDetail, RefreshCw } from "@boxicons/react";
 
@@ -23,7 +23,7 @@ export const CvActionsPanel = ({ sections }) => {
         Reset CV
       </ActionButton>
 
-      <CvPDF sections={sections} />
+      <CvPdfDownload sections={sections} />
     </>
   )
 }
