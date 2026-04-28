@@ -17,13 +17,16 @@ export const PersonalDetailsPreview = () => {
   const contactInfo = [
     address,
     personal.phone,
-    personal.email,
-    personal.linkedin,
-    personal.github,
-    personal.portfolio,
   ]
     .filter(Boolean)
     .join(" | ");
+
+  const links = [
+    { id: "email", label: "Email" },
+    { id: "linkedin", label: "LinkedIn" },
+    { id: "github", label: "GitHub" },
+    { id: "portfolio", label: "Portfolio" },
+  ].filter(link => personal[link.id]?.trim());
 
   return (
     <section className={`${styles.section} ${styles.centerText}`}>
@@ -39,11 +42,25 @@ export const PersonalDetailsPreview = () => {
         </span>
       )}
 
-      {contactInfo && (
-        <span className={styles.contact}>
-          {contactInfo}
-        </span>
-      )}
+      <div>
+        {contactInfo && (
+          <span className={styles.contact}>
+            {contactInfo}
+          </span>
+        )}
+
+        {contactInfo && links.length > 0 && <span> {" | "} </span>}
+
+        {links.map((link, index) => (
+          <span key={link.id}>
+            <a href={personal[link.id]}>
+              {link.label}
+            </a>
+            {index < links.length - 1 && <span> | </span>}
+          </span>
+        ))}
+      </div>
+
     </section>
   );
 };
