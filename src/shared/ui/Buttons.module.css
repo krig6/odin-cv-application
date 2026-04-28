@@ -50,6 +50,7 @@
 .download,
 .action {
   max-width: 90px;
+  height: 52px;
 }
 
 @media (min-width: 1024px) {
