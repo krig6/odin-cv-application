@@ -1,5 +1,6 @@
-import { View, Text } from "@react-pdf/renderer";
+import { View, Text, Link } from "@react-pdf/renderer";
 import { pdfStyles } from "../pdfStyles";
+import { Fragment } from "react";
 
 export const Personal = ({ personal }) => {
   const fullName = [
@@ -21,13 +22,16 @@ export const Personal = ({ personal }) => {
   const contactInfo = [
     address,
     personal.phone,
-    personal.email,
-    personal.linkedin,
-    personal.github,
-    personal.portfolio,
   ]
     .filter(Boolean)
     .join(" | ");
+
+  const links = [
+    { id: "email", label: "Email" },
+    { id: "linkedin", label: "LinkedIn" },
+    { id: "github", label: "GitHub" },
+    { id: "portfolio", label: "Portfolio" },
+  ].filter(link => personal[link.id]?.trim())
 
   return (
     <View style={pdfStyles.personalSection}>
@@ -44,12 +48,21 @@ export const Personal = ({ personal }) => {
         </Text>
       )}
 
-      {contactInfo && (
-        <Text style={pdfStyles.contact}>
-          {contactInfo}
-        </Text>
-      )}
+      <Text style={pdfStyles.contact}>
+        {contactInfo}
 
-    </View>
+        {contactInfo && links.length > 0 ? " | " : ""}
+
+        {links.map((link, index) => (
+          <Fragment key={link.id}>
+            <Link src={personal[link.id]}>
+              {link.label}
+            </Link>
+            {index < links.length - 1 && " | "}
+          </Fragment>
+        ))}
+
+      </Text>
+    </View >
   );
 };
