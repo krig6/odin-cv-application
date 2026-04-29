@@ -1,7 +1,8 @@
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { useCvStore } from "../store/cvStore";
-import { DownloadPdfButton } from "../shared/ui/Buttons"
+import { ActionButton } from "../shared/ui/Buttons"
 import { CvDocument } from "./CvDocument";
+import { ArrowToBottom } from "@boxicons/react";
 
 export const CvPdfDownload = ({ sections }) => (
   <div>
@@ -9,9 +10,11 @@ export const CvPdfDownload = ({ sections }) => (
       document={<CvPdfDocument sections={sections} />}
       fileName="CV.pdf">
       {({ loading }) => (
-        <DownloadPdfButton>
+        <ActionButton
+          icon={<ArrowToBottom />}
+        >
           {loading ? "Generating..." : "PDF"}
-        </DownloadPdfButton>
+        </ActionButton>
       )}
     </PDFDownloadLink>
   </div>

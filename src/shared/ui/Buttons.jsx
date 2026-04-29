@@ -26,19 +26,6 @@ export const IconButton = ({ icon, onClick, ...dragHandleProps }) => {
   )
 }
 
-export const DownloadPdfButton = ({ onClick, children }) => {
-  return (
-    <button
-      className={`${styles.button} ${styles.download}`}
-      type="button"
-      onClick={onClick}
-    >
-      <ArrowToBottom />
-      {children}
-    </button>
-  )
-}
-
 export const ActionButton = ({ icon, children, onClick }) => {
   return (
     <button
