@@ -1,9 +1,9 @@
 import { useCvStore } from "../../store/cvStore";
 import { CvPdfDownload } from "../../pdf/CvPDF";
 import { ActionButton } from "../../shared/ui/Buttons";
-import { FileDetail, RefreshCw } from "@boxicons/react";
+import { Eye, FileDetail, RefreshCw } from "@boxicons/react";
 
-export const CvActionsPanel = ({ sections }) => {
+export const CvActionsPanel = ({ sections, onPreview }) => {
   const fillCv = useCvStore(state => state.fillCv)
   const resetCv = useCvStore(state => state.resetCv)
 
@@ -21,6 +21,13 @@ export const CvActionsPanel = ({ sections }) => {
         onClick={resetCv}
       >
         Reset CV
+      </ActionButton>
+
+      <ActionButton
+        icon={<Eye />}
+        onClick={onPreview}
+      >
+        Preview CV
       </ActionButton>
 
       <CvPdfDownload sections={sections} />

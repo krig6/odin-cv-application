@@ -37,6 +37,24 @@
   gap: 0.5rem;
 }
 
+.pdfOverlay {
+  position: fixed;
+  background-color: #282828;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.pdfOverlay button {
+  align-self: center;
+  margin: 1rem;
+}
+
+.pdfOverlay :global(iframe) {
+  flex: 1;
+}
+
 @media (min-width: 1024px) {
   .builder {
     display: grid;
