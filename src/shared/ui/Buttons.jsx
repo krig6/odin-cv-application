@@ -1,4 +1,4 @@
-import { Plus, ArrowToBottom } from "@boxicons/react";
+import { Plus } from "@boxicons/react";
 import styles from "./Buttons.module.css"
 
 export const AddButton = ({ children, onClick }) => {
@@ -34,7 +34,7 @@ export const ActionButton = ({ icon, children, onClick }) => {
       onClick={onClick}
     >
       {icon}
-      {children}
+      <span>{children}</span>
     </button>
   )
 }

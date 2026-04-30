@@ -14,26 +14,26 @@
 }
 
 .button:hover {
-  background-color: #c7d2fe;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  color: #2563eb;
-  transform: translateY(-1px);
-
-
   background-color: #3F72AF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   color: #F9F7F7;
+  transform: translateY(-1px);
 }
 
 .button:active {
   background-color: #112D4E;
-  color: #F9F7F7;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  color: #F9F7F7;
   transform: translateY(0px);
 }
 
 .icon {
   border-radius: 0.4rem;
   padding: 0.4rem;
+}
+
+.action span {
+  display: none;
 }
 
 .add,
@@ -58,5 +58,9 @@
 @media (min-width: 1024px) {
   .action {
     min-width: 150px;
+  }
+
+  .action span {
+    display: inline;
   }
 }
