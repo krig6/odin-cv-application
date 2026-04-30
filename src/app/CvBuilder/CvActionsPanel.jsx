@@ -13,21 +13,21 @@ export const CvActionsPanel = ({ sections, onPreview }) => {
         icon={<FileDetail />}
         onClick={fillCv}
       >
-        Fill CV
+        Fill
       </ActionButton>
 
       <ActionButton
         icon={<RefreshCw />}
         onClick={resetCv}
       >
-        Reset CV
+        Reset
       </ActionButton>
 
       <ActionButton
         icon={<Eye />}
         onClick={onPreview}
       >
-        Preview CV
+        Preview
       </ActionButton>
 
       <CvPdfDownload sections={sections} />

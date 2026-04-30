@@ -14,7 +14,7 @@ export const CvPdfDownload = ({ sections }) => (
         <ActionButton
           icon={<ArrowToBottom />}
         >
-          {loading ? "Generating..." : "PDF"}
+          {loading ? "Generating..." : "Download"}
         </ActionButton>
       )}
     </PDFDownloadLink>
