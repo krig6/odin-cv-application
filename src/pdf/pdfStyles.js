@@ -3,8 +3,14 @@ import { StyleSheet, Font } from "@react-pdf/renderer";
 Font.register({
   family: "EB Garamond",
   fonts: [
-    { src: "/font/EBGaramond-Bold.ttf", fontWeight: "bold" },
-    { src: "/font/EBGaramond-Regular.ttf", fontWeight: "normal" },
+    {
+      src: `${import.meta.env.BASE_URL}font/EBGaramond-Bold.ttf`,
+      fontWeight: "bold",
+    },
+    {
+      src: `${import.meta.env.BASE_URL}font/EBGaramond-Regular.ttf`,
+      fontWeight: "normal",
+    },
   ],
 });
 
