@@ -8,15 +8,15 @@ A CV/Résumé Builder built as part of The Odin Project's React curriculum. User
 
 ## Technologies Used
 
-- **React:** Component-based UI development
-- **Vite:** Fast build tool and development server
-- **Zustand:** Lightweight state management
-- **@dnd-kit/core / sortable / utilities:** Drag-and-drop interactions and sorting
-- **@react-pdf/renderer:** Generating downloadable PDF résumés
+- **React:** https://react.dev — Component-based UI library
+- **Vite:** https://vitejs.dev — Fast build tool and development server
+- **Zustand:** https://zustand-demo.pmnd.rs — Lightweight state management
+- **@dnd-kit (core / sortable / utilities):** https://dndkit.com — Drag-and-drop interactions and sorting
+- **@react-pdf/renderer:** https://react-pdf.org — Generate downloadable PDF résumés
 - **Boxicons React:** Icon library for UI elements
 - **Pluralize:** String pluralization utilities
-- **ESLint:** Code linting and quality enforcement
-- **gh-pages:** Deployment to GitHub Pages
+- **ESLint:** Code linting and static analysis tool
+- **gh-pages:** GitHub Pages deployment utility
 
 ## Features
 
