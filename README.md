@@ -32,6 +32,12 @@ A CV/Résumé Builder built as part of The Odin Project's React curriculum. User
 - **Component-Based Architecture:** Built with reusable React components for maintainability and scalability.
 - **One-Click Sample CV:** Instantly populate all sections with sample data to preview the résumé design and functionality.
 
+## Screenshots
+
+![Preview](./src/assets/preview-1.png)
+![Preview](./src/assets/preview-2.png)
+![Preview](./src/assets/preview-3.png)
+
 ## Learning Path
 
 This project was my first experience with React. At first, the React way of building applications felt confusing, but after spending time with it, the concepts started to click.
